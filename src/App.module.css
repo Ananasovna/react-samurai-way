@@ -9,6 +9,8 @@
   grid-template-columns: 2fr auto;
   margin: auto;
   padding: 0;
+  background: white;
+  box-shadow: 0 0 30px -8px rgba(0, 0, 0, .5);
 }
 
 .App-logo {
@@ -48,6 +50,7 @@
 
 .main {
   grid-area: main;
-  background: bisque;
+  /*box-shadow: inset 0 -9px 30px -8px rgba(0, 0, 0, .5);*/
+  /*box-shadow: inset 0 -9px 30px -8px rgba(0, 0, 0, .5);*/
 }
 
