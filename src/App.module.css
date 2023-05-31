@@ -1,5 +1,14 @@
-.App {
-
+.app {
+  height: 100vh;
+  width: 1200px;
+  display: grid;
+  grid-template-areas:
+  "header header"
+  "navbar main";
+  grid-template-rows: auto 1fr;
+  grid-template-columns: 2fr auto;
+  margin: auto;
+  padding: 0;
 }
 
 .App-logo {
@@ -36,3 +45,9 @@
     transform: rotate(360deg);
   }
 }
+
+.main {
+  grid-area: main;
+  background: bisque;
+}
+

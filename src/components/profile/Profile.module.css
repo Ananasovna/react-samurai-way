@@ -1,0 +1,17 @@
+.profile {
+
+}
+
+.profileImg {
+    height: 200px;
+    width: 1000px;
+    position: relative;
+    overflow: hidden;
+}
+
+.content {
+    position: relative;
+
+    width: 100%;
+    padding: 20px;
+}

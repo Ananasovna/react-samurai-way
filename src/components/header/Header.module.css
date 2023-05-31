@@ -1,0 +1,19 @@
+.header {
+    grid-area: header;
+    background: #61dafb;
+    display: grid;
+    grid-template-areas:
+    "logo";
+    grid-template-columns: 90px 1fr;
+    padding: 20px 40px;
+}
+
+.logo {
+    grid-area: logo;
+}
+
+.header img {
+    height: 60px;
+    width: 60px;
+}
+
