@@ -52,7 +52,18 @@
   }
 }
 
+.mainWrapper {
+  position: relative;
+  display: flex;
+  gap: 30px;
+}
+
 .main {
   grid-area: main;
+  width: 1080px;
+  background: white;
+  box-shadow: 0 0 30px -8px rgba(0, 0, 0, .5);
+  border-radius: 10px;
+  overflow: hidden;
 }
 
