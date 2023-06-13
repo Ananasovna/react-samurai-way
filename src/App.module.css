@@ -1,5 +1,9 @@
+* {
+  box-sizing: border-box;
+}
+
 .app {
-  height: 100vh;
+  height: 100%;
   width: 1200px;
   display: grid;
   grid-template-areas:
@@ -7,10 +11,10 @@
   "navbar main";
   grid-template-rows: auto 1fr;
   grid-template-columns: 2fr auto;
+  gap: 30px;
   margin: auto;
-  padding: 0;
-  background: white;
-  box-shadow: 0 0 30px -8px rgba(0, 0, 0, .5);
+  padding: 20px 0;
+
 }
 
 .App-logo {

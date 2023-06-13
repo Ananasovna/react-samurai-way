@@ -1,0 +1,28 @@
+.wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #2c4d55;
+}
+
+.avatarWrapper {
+    height: 60px;
+    width: 60px;
+    overflow: hidden;
+    border-radius: 5px;
+}
+
+.avatarWrapper img {
+    height: 100%;
+    width:  100%;
+    object-fit: cover;
+}
+
+.text {
+    width: 90%;
+    text-align: justify;
+    padding: 0;
+
+}
