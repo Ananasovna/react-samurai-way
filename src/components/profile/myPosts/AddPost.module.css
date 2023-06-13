@@ -8,5 +8,8 @@
 .textarea {
     width: 100%;
     resize: none;
-
+    border-radius: 5px;
+    border: 3px solid #2c4d55;
+    outline: none;
+    overflow: auto;
 }
