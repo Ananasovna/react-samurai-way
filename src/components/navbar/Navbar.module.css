@@ -3,8 +3,21 @@
     width: 200px;
     position: sticky;
     grid-area: navbar;
-    padding: 40px 40px;
+    padding: 40px;
     background: white;
     box-shadow: 10px 0 20px -10px rgba(0, 0, 0, .5);
     border-radius: 10px;
+}
+
+a {
+    font-size: 22px;
+    color: black;
+    text-decoration: none;
+}
+
+
+
+.active {
+    color: #2c4d55;
+    font-weight: 700;
 }

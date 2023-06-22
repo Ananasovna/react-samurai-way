@@ -10,6 +10,8 @@
     height: 240px;
     width: 1000px;
     position: relative;
+    left: -40px;
+    top: -40px;
     overflow: hidden;
 }
 
@@ -20,5 +22,4 @@
 
 .content {
     width: 100%;
-    padding: 40px 40px;
 }
