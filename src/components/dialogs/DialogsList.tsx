@@ -2,11 +2,11 @@ import style from './DialogsList.module.css';
 import {DialogItem} from "./DialogItem";
 import {Dialog} from "./Dialogs";
 
-type DialogsListprops = {
+type DialogsListProps = {
     dialogs: Dialog[]
 }
 
-export const DialogsList = ({dialogs}: DialogsListprops) => {
+export const DialogsList = ({dialogs}: DialogsListProps) => {
 
 
     return (

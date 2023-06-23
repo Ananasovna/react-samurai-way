@@ -7,17 +7,17 @@
 }
 
 .profileImg {
-    height: 240px;
-    width: 1000px;
+    height: 250px;
+    width: auto;
     position: relative;
-    left: -40px;
-    top: -40px;
     overflow: hidden;
+    margin: -40px -40px 0 -40px;
 }
 
 .img {
     width: 100%;
     position: relative;
+    object-fit: fill;
 }
 
 .content {
