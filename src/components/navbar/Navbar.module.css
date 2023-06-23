@@ -1,8 +1,6 @@
 .navbar {
     height: 200px;
     min-width: 200px;
-    position: sticky;
-    grid-area: navbar;
     padding: 40px;
     background: white;
     box-shadow: 10px 0 20px -10px rgba(0, 0, 0, .5);

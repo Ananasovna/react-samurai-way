@@ -1,4 +1,5 @@
 import {Message} from "./Dialogs";
+import style from './Message.module.css';
 
 type MessageProps = {
     message: Message
@@ -6,10 +7,12 @@ type MessageProps = {
 
 export const MessageItem = ({message}: MessageProps) => {
 
+    const messageClass = `${style.wrapper} ${message.isOwner ? style.owner : ''}`
+
     return (
-        <div>
-            <div>{message.text}</div>
-            <div>{message.time}</div>
+        <div className={messageClass}>
+            <div className={style.text}>{message.text}</div>
+            <div className={style.time}>{message.time}</div>
         </div>
     )
 }

@@ -3,6 +3,7 @@ import {DialogsList} from "./DialogsList";
 import {MessagesList} from "./MessagesList";
 import {v1} from "uuid";
 import {useState} from "react";
+import {useParams} from "react-router-dom";
 
 export type Dialog = {
     id: string
@@ -22,12 +23,25 @@ export type Messages = {
 }
 
 
+export const id1: string = v1();
+const id2: string = v1();
+const id3: string = v1();
+const id4: string = v1();
+
 export const Dialogs = () => {
 
-    const id1: string = v1();
-    const id2: string = v1();
-    const id3: string = v1();
-    const id4: string = v1();
+    const params = useParams();
+    let idValue: string = '';
+
+    if (params.id) {
+        idValue = params.id;
+        console.log(idValue)
+        console.log(id1)
+        console.log(id2)
+        console.log(id3)
+        console.log(id4)
+    }
+
 
     const [currentDialogId, setCurrentDialogId] = useState<string>(id1)
 
@@ -55,7 +69,7 @@ export const Dialogs = () => {
     return (
         <div className={s.wrapper}>
             <DialogsList dialogs={dialogs}/>
-            <MessagesList currentDialogId={currentDialogId} messages={messages}/>
+            {/*<MessagesList currentDialogId={idValue} messages={messages}/>*/}
         </div>
     )
 }

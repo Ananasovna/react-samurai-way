@@ -3,17 +3,18 @@
 }
 
 .app {
-  min-height: 100vh;
+  height: 100%;
   width: 1200px;
-  display: grid;
-  grid-template-areas:
-  "header header"
-  "navbar main";
-  grid-template-rows: auto 1fr;
-  grid-template-columns: 2fr auto;
+  display: flex;
+  flex-direction: column;
   gap: 30px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
   margin: 0 auto;
-  padding: 20px 0;
+  padding: 20px 0 ;
 
 }
 
@@ -53,6 +54,7 @@
 }
 
 .mainWrapper {
+  height: 100%;
   width: 100%;
   position: relative;
   display: flex;
@@ -61,7 +63,6 @@
 }
 
 .main {
-  grid-area: main;
   width: 100%;
   background: white;
   box-shadow: 0 0 30px -8px rgba(0, 0, 0, .5);
