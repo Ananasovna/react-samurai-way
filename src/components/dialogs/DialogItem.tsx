@@ -4,10 +4,10 @@ import {Dialog} from "./Dialogs";
 import {NavLink} from "react-router-dom";
 
 type DialogItemProps = {
-    user?: Dialog
+    user: Dialog
 }
 
-export const DialogItem = ({user = {id: '1', name: 'Peter', avatarSrc: 'https://otkritkis.com/wp-content/uploads/2022/06/ra8je.jpg'}}: DialogItemProps) => {
+export const DialogItem = ({user}: DialogItemProps) => {
 
     return (
         <NavLink to={`/dialogs/`+ user.id} className={style.wrapper}>

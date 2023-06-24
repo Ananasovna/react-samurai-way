@@ -7,7 +7,7 @@ type MessageProps = {
 
 export const MessageItem = ({message}: MessageProps) => {
 
-    const messageClass = `${style.wrapper} ${message.isOwner ? style.owner : ''}`
+    const messageClass = `${style.wrapper} ${message.isOwner ? style.owner : ''}`;
 
     return (
         <div className={messageClass}>

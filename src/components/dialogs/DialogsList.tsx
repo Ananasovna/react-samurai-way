@@ -8,12 +8,13 @@ type DialogsListProps = {
 
 export const DialogsList = ({dialogs}: DialogsListProps) => {
 
+    const getDialogs = () => {
+        return dialogs.map(el => <DialogItem key={el.id} user={el} />);
+    }
 
     return (
         <div className={style.wrapper}>
-            {
-                dialogs.map(el => <DialogItem key={el.id} user={el} />)
-            }
+            {getDialogs()}
         </div>
     )
 }

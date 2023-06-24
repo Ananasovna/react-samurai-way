@@ -1,4 +1,4 @@
-import {id1, Messages} from "./Dialogs";
+import {Messages} from "./Dialogs";
 import style from './MessagesList.module.css'
 import {MessageItem} from "./MessageItem";
 
