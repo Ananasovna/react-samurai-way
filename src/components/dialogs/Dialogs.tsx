@@ -2,7 +2,6 @@ import s from './Dialogs.module.css';
 import {DialogsList} from "./DialogsList";
 import {MessagesList} from "./MessagesList";
 import {v1} from "uuid";
-import {useState} from "react";
 import {useParams} from "react-router-dom";
 
 export type Dialog = {
@@ -23,10 +22,10 @@ export type Messages = {
 }
 
 
-export const id1: string = v1();
-const id2: string = v1();
-const id3: string = v1();
-const id4: string = v1();
+export const id1: string = '1';
+const id2: string = '2';
+const id3: string = '3';
+const id4: string = '4';
 
 export const Dialogs = () => {
 
@@ -35,15 +34,8 @@ export const Dialogs = () => {
 
     if (params.id) {
         idValue = params.id;
-        console.log(idValue)
-        console.log(id1)
-        console.log(id2)
-        console.log(id3)
-        console.log(id4)
     }
 
-
-    const [currentDialogId, setCurrentDialogId] = useState<string>(id1)
 
     const dialogs: Dialog[] = [
         {id: id1, name: 'Peter', avatarSrc: 'https://otkritkis.com/wp-content/uploads/2022/06/ra8je.jpg'},
@@ -62,14 +54,18 @@ export const Dialogs = () => {
             {id: v1(), text: 'What are you doing?', time: '11:30', isOwner: false},
             {id: v1(), text: 'Coding!', time: '11:58', isOwner: true},
             {id: v1(), text: 'Good for you', time: '12:30', isOwner: false},
-        ]
+        ],
+        [id3]:
+            [],
+        [id4]:
+            [],
     }
 
 
     return (
         <div className={s.wrapper}>
             <DialogsList dialogs={dialogs}/>
-            {/*<MessagesList currentDialogId={idValue} messages={messages}/>*/}
+            <MessagesList currentDialogId={idValue} messages={messages}/>
         </div>
     )
 }
