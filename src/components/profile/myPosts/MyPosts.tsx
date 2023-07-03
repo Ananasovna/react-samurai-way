@@ -1,5 +1,5 @@
 import {Post} from './Post';
-import s from './MyPosts.module.css';
+import styles from './MyPosts.module.css';
 import {AddPost} from './AddPost';
 import {TPost} from "../../../redux/types";
 
@@ -14,9 +14,9 @@ export const MyPosts = ({data}: MyPostsProps) => {
     };
 
     return (
-        <div className={s.wrapper}>
+        <div className={styles.wrapper}>
             <AddPost />
-            <h1 className={s.h1}>My posts</h1>
+            <h1 className={styles.h1}>My posts</h1>
             {getPosts()}
         </div>
     )

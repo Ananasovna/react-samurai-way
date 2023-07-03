@@ -1,6 +1,6 @@
 import s from './Dialogs.module.css';
-import {DialogsList} from "./DialogsList";
-import {MessagesList} from "./MessagesList";
+import {DialogsList} from "./dialogsList/DialogsList";
+import {MessagesList} from "./messagesList/MessagesList";
 import {useParams} from "react-router-dom";
 import {DialogsPage} from "../../redux/types";
 

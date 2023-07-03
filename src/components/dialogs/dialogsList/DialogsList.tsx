@@ -1,6 +1,6 @@
 import style from './DialogsList.module.css';
 import {DialogItem} from "./DialogItem";
-import {Dialog} from "../../redux/types";
+import {Dialog} from "../../../redux/types";
 
 
 

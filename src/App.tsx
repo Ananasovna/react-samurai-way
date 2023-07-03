@@ -1,5 +1,5 @@
 import React from 'react';
-import style from './App.module.css';
+import styles from './App.module.css';
 import {Header} from "./components/header/Header";
 import {Profile} from './components/profile/Profile';
 import {Navbar} from './components/navbar/Navbar';
@@ -7,15 +7,20 @@ import {Dialogs} from "./components/dialogs/Dialogs";
 import {Navigate, Route, Routes} from "react-router-dom";
 import {Users} from "./components/users/Users";
 import {state} from "./redux/state";
+import {State} from "./redux/types";
 
-const App = () => {
+type AppProps = {
+    state: State
+}
+
+const App = ({state}: AppProps) => {
     return (
-        <div className={style.app}>
+        <div className={styles.app}>
 
             <Header/>
-            <div className={style.mainWrapper}>
+            <div className={styles.mainWrapper}>
                 <Navbar/>
-                <main className={style.main}>
+                <main className={styles.main}>
                     <Routes>
                         <Route path='/' element={<Navigate to='/profile'/>} />
                         <Route path='/profile' element={<Profile data={state.profilePage}/>}/>

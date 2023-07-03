@@ -1,5 +1,5 @@
 import style from './Message.module.css';
-import {Message} from "../../redux/types";
+import {Message} from "../../../redux/types";
 
 type MessageProps = {
     message: Message

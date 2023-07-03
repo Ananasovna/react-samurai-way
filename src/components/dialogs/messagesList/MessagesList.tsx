@@ -1,6 +1,6 @@
 import style from './MessagesList.module.css'
 import {MessageItem} from "./MessageItem";
-import {Messages} from "../../redux/types";
+import {Messages} from "../../../redux/types";
 
 type MessagesListProps = {
     messages: Messages
