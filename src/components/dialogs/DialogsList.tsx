@@ -1,6 +1,8 @@
 import style from './DialogsList.module.css';
 import {DialogItem} from "./DialogItem";
-import {Dialog} from "./Dialogs";
+import {Dialog} from "../../redux/types";
+
+
 
 type DialogsListProps = {
     dialogs: Dialog[]

@@ -4,9 +4,9 @@ import {Header} from "./components/header/Header";
 import {Profile} from './components/profile/Profile';
 import {Navbar} from './components/navbar/Navbar';
 import {Dialogs} from "./components/dialogs/Dialogs";
-import {Route, Routes, Navigate} from "react-router-dom";
+import {Navigate, Route, Routes} from "react-router-dom";
 import {Users} from "./components/users/Users";
-import {DialogItem} from "./components/dialogs/DialogItem";
+import {state} from "./redux/state";
 
 const App = () => {
     return (
@@ -18,9 +18,9 @@ const App = () => {
                 <main className={style.main}>
                     <Routes>
                         <Route path='/' element={<Navigate to='/profile'/>} />
-                        <Route path='/profile' element={<Profile/>}/>
-                        <Route path='/dialogs/' element={<Dialogs/>}>
-                            <Route path='/dialogs/:id' element={<Dialogs/>}/>
+                        <Route path='/profile' element={<Profile data={state.profilePage}/>}/>
+                        <Route path='/dialogs/' element={<Dialogs data={state.dialogsPage}/>}>
+                            <Route path='/dialogs/:id' element={<Dialogs data={state.dialogsPage}/>}/>
                         </Route>
                         <Route path='/users' element={<Users />}/>
                     </Routes>

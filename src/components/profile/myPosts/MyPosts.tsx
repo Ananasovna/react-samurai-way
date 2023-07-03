@@ -1,17 +1,23 @@
 import {Post} from './Post';
 import s from './MyPosts.module.css';
 import {AddPost} from './AddPost';
+import {TPost} from "../../../redux/types";
 
-export const MyPosts = () => {
+type MyPostsProps = {
+    data: TPost[]
+}
+
+export const MyPosts = ({data}: MyPostsProps) => {
+
+    const getPosts = () => {
+        return data.map(el => <Post key={el.id} data={el}/>);
+    };
+
     return (
         <div className={s.wrapper}>
             <AddPost />
-            <h1>My posts</h1>
-            <Post text={'my first post'}/>
-            <Post text={'Hey! It\'s me. Lorem ipsum dolor sit amet, consectetur adipisicing elit.'}/>
-            <Post text={'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam delectus eius explicabo iusto labore neque perferendis provident repudiandae tempora veritatis? Adipisci aspernatur autem illo labore quos sunt veniam voluptas. Amet.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam delectus eius explicabo iusto labore neque perferendis provident repudiandae tempora veritatis? Adipisci aspernatur autem illo labore quos sunt veniam voluptas. Amet.' +
-                'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam delectus eius explicabo iusto labore neque perferendis provident repudiandae tempora veritatis? Adipisci aspernatur autem illo labore quos sunt veniam voluptas. Amet.'}/>
-            <Post text={'Hey! It\'s me'}/>
+            <h1 className={s.h1}>My posts</h1>
+            {getPosts()}
         </div>
     )
 }

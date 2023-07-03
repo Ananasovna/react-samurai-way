@@ -1,8 +1,13 @@
 import styles from './Profile.module.css';
 import {MyPosts} from './myPosts/MyPosts';
 import {ProfileIno} from "./profileInfo/ProfileInfo";
+import {ProfilePage} from "../../redux/types";
 
-export const Profile = () => {
+type ProfileProps = {
+    data: ProfilePage
+}
+
+export const Profile = ({data}: ProfileProps) => {
     return (
         <div className={styles.profile}>
             <div className={styles.profileImg}>
@@ -11,7 +16,7 @@ export const Profile = () => {
             </div>
             <div className={styles.content}>
                 <ProfileIno/>
-                <MyPosts/>
+                <MyPosts data={data.posts}/>
             </div>
         </div>
 
