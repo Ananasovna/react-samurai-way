@@ -17,6 +17,7 @@ export const MessagesList = ({currentDialogId, messages}: MessagesListProps) => 
                 }
             });
         }
+        return <div className={style.placeholder}>Choose dialog</div>
     }
 
     return (
