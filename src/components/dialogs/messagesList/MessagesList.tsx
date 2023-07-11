@@ -6,9 +6,10 @@ import {Sendler} from "../../common/Sendler";
 type MessagesListProps = {
     messages: MessagesType
     currentDialogId: string
+    addMessage: (text: string, dialogId: string) => void;
 }
 
-export const MessagesList = ({currentDialogId, messages}: MessagesListProps) => {
+export const MessagesList = ({currentDialogId, messages, addMessage}: MessagesListProps) => {
 
     const getMessages = () => {
         if (currentDialogId) {
@@ -21,14 +22,14 @@ export const MessagesList = ({currentDialogId, messages}: MessagesListProps) => 
         return <div className={style.placeholder}>Choose dialog</div>
     }
 
-    const addMessage = (value: string) => {
-        console.log(value);
+    const sendMessage = (value: string) => {
+        addMessage(value, currentDialogId);
     }
 
     return (
         <div className={style.wrapper}>
             {getMessages()}
-            {currentDialogId && <Sendler buttonTitle={'Send'} callBack={addMessage}/>}
+            {currentDialogId && <Sendler buttonTitle={'Send'} callBack={sendMessage}/>}
         </div>
     )
 }

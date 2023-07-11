@@ -1,5 +1,6 @@
 import {v1} from "uuid";
 import {StateType} from "./types";
+import {rerenderApp} from "../render";
 
 const id1: string = '1';
 const id2: string = '2';
@@ -47,4 +48,15 @@ export const state: StateType = {
             {id: id4, name: 'Dimych', avatarSrc: 'https://kartinkived.ru/wp-content/uploads/2021/12/avatarka-dlya-vatsapa-krasivaya-panda.jpg'},
         ]
     }
+}
+
+export const addPost = (text: string) => {
+    state.profilePage.posts.push({id: state.profilePage.posts.length, text, likesCount: 0})
+    console.log(state)
+    rerenderApp(state, addMessage, addPost);
+}
+
+export const addMessage = (text: string, dialogId: string) => {
+    state.dialogsPage.messages[dialogId].push({id: v1(), text, time: '10:00', isOwner: true})
+    rerenderApp(state, addMessage, addPost);
 }

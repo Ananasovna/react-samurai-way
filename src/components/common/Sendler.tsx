@@ -12,8 +12,10 @@ export const Sendler = ({callBack, buttonTitle}: SendlerPropsType) => {
     const textareaRef = useRef<HTMLTextAreaElement>(null);
 
     const onClickHandler = () => {
-
-        if (textareaRef.current !== null) callBack(textareaRef.current.value);
+        if (textareaRef.current !== null) {
+            callBack(textareaRef.current.value);
+            textareaRef.current.value = '';
+        }
     }
 
     return (

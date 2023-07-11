@@ -28,7 +28,7 @@ export const Navbar = ({data}: NavbarProps) => {
             <div className={styles.friendsWrapper}>
                 <h3>My friends</h3>
                 <div className={styles.friends}>
-                    {data.friends.map(f => <UserCard user={f} />)}
+                    {data.friends.map(f => <UserCard key={f.id} user={f} />)}
                 </div>
             </div>
         </div>

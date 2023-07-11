@@ -5,9 +5,10 @@ import {ProfilePageType} from "../../redux/types";
 
 type ProfileProps = {
     data: ProfilePageType
+    addPost: (text: string) => void;
 }
 
-export const Profile = ({data}: ProfileProps) => {
+export const Profile = ({data, addPost}: ProfileProps) => {
     return (
         <div className={styles.profile}>
             <div className={styles.profileImg}>

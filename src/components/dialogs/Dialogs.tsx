@@ -6,9 +6,10 @@ import {DialogsPageType} from "../../redux/types";
 
 type DialogsProps = {
     data: DialogsPageType
+    addMessage: (text: string, dialogId: string) => void;
 }
 
-export const Dialogs = ({data}: DialogsProps) => {
+export const Dialogs = ({data, addMessage}: DialogsProps) => {
 
     const params = useParams();
     let idValue: string = '';
@@ -20,7 +21,7 @@ export const Dialogs = ({data}: DialogsProps) => {
     return (
         <div className={s.wrapper}>
             <DialogsList dialogs={data.dialogs}/>
-            <MessagesList currentDialogId={idValue} messages={data.messages}/>
+            <MessagesList addMessage={addMessage} currentDialogId={idValue} messages={data.messages}/>
         </div>
     )
 }
