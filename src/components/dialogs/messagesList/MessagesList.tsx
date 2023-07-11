@@ -1,9 +1,9 @@
 import style from './MessagesList.module.css'
 import {MessageItem} from "./MessageItem";
-import {Messages} from "../../../redux/types";
+import {MessagesType} from "../../../redux/types";
 
 type MessagesListProps = {
-    messages: Messages
+    messages: MessagesType
     currentDialogId: string
 }
 

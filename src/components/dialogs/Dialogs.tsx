@@ -2,10 +2,10 @@ import s from './Dialogs.module.css';
 import {DialogsList} from "./dialogsList/DialogsList";
 import {MessagesList} from "./messagesList/MessagesList";
 import {useParams} from "react-router-dom";
-import {DialogsPage} from "../../redux/types";
+import {DialogsPageType} from "../../redux/types";
 
 type DialogsProps = {
-    data: DialogsPage
+    data: DialogsPageType
 }
 
 export const Dialogs = ({data}: DialogsProps) => {

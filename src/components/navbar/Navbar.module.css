@@ -1,6 +1,6 @@
 .navbar {
-    height: 200px;
-    min-width: 200px;
+    height: 390px;
+    width: 250px;
     padding: 40px;
     background: white;
     box-shadow: 10px 0 20px -10px rgba(0, 0, 0, .5);
@@ -13,9 +13,24 @@ a {
     text-decoration: none;
 }
 
-
-
 .active {
     color: #2c4d55;
     font-weight: 700;
+}
+
+.friendsWrapper {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.friends {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+}
+
+h3 {
+    color: #2c4d55;
 }

@@ -1,12 +1,12 @@
 import {v1} from "uuid";
-import {State} from "./types";
+import {StateType} from "./types";
 
 const id1: string = '1';
 const id2: string = '2';
 const id3: string = '3';
 const id4: string = '4';
 
-export const state: State = {
+export const state: StateType = {
     dialogsPage: {
         dialogs: [
             {id: id1, name: 'Peter', avatarSrc: 'https://otkritkis.com/wp-content/uploads/2022/06/ra8je.jpg'},
@@ -37,6 +37,14 @@ export const state: State = {
             {id: 2, text: 'Hey! It\'s me. Lorem ipsum dolor sit amet, consectetur adipisicing elit.', likesCount: 10},
             {id: 3, text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam delectus eius explicabo iusto labore neque perferendis provident repudiandae tempora veritatis? Adipisci aspernatur autem illo labore quos sunt veniam voluptas. Amet.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam delectus eius explicabo iusto labore neque perferendis provident repudiandae tempora veritatis? Adipisci aspernatur autem illo labore quos sunt veniam voluptas. Amet.', likesCount: 5},
             {id: 4, text: 'Hey! It\'s me', likesCount: 0},
+        ]
+    },
+    sidebar: {
+        friends: [
+            {id: id1, name: 'Peter', avatarSrc: 'https://otkritkis.com/wp-content/uploads/2022/06/ra8je.jpg'},
+            {id: id2, name: 'Anna', avatarSrc: 'https://imgv3.fotor.com/images/gallery/watercolor-female-avatar.jpg'},
+            {id: id3, name: 'Roman', avatarSrc: 'https://shapka-youtube.ru/wp-content/uploads/2021/02/prikolnaya-avatarka-dlya-patsanov.jpg'},
+            {id: id4, name: 'Dimych', avatarSrc: 'https://kartinkived.ru/wp-content/uploads/2021/12/avatarka-dlya-vatsapa-krasivaya-panda.jpg'},
         ]
     }
 }

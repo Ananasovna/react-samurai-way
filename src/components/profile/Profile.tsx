@@ -1,10 +1,10 @@
 import styles from './Profile.module.css';
 import {MyPosts} from './myPosts/MyPosts';
 import {ProfileIno} from "./profileInfo/ProfileInfo";
-import {ProfilePage} from "../../redux/types";
+import {ProfilePageType} from "../../redux/types";
 
 type ProfileProps = {
-    data: ProfilePage
+    data: ProfilePageType
 }
 
 export const Profile = ({data}: ProfileProps) => {

@@ -1,8 +1,8 @@
 import s from './Post.module.css';
-import {TPost} from "../../../redux/types";
+import {PostType} from "../../../redux/types";
 
 type PostProps = {
-    data: TPost
+    data: PostType
 
 }
 

@@ -1,10 +1,10 @@
 import {Post} from './Post';
 import styles from './MyPosts.module.css';
 import {AddPost} from './AddPost';
-import {TPost} from "../../../redux/types";
+import {PostType} from "../../../redux/types";
 
 type MyPostsProps = {
-    data: TPost[]
+    data: PostType[]
 }
 
 export const MyPosts = ({data}: MyPostsProps) => {

@@ -1,11 +1,11 @@
 import style from './DialogsList.module.css';
 import {DialogItem} from "./DialogItem";
-import {Dialog} from "../../../redux/types";
+import {UserType} from "../../../redux/types";
 
 
 
 type DialogsListProps = {
-    dialogs: Dialog[]
+    dialogs: UserType[]
 }
 
 export const DialogsList = ({dialogs}: DialogsListProps) => {

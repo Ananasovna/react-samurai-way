@@ -1,8 +1,8 @@
 import style from './Message.module.css';
-import {Message} from "../../../redux/types";
+import {MessageType} from "../../../redux/types";
 
 type MessageProps = {
-    message: Message
+    message: MessageType
 }
 
 export const MessageItem = ({message}: MessageProps) => {

@@ -1,32 +1,34 @@
-export type Dialog = {
+export type UserType = {
     id: string
     name: string
     avatarSrc: string
 }
-export type Message = {
+export type MessageType = {
     id: string
     text: string
     time: string
     isOwner: boolean
 }
-export type Messages = {
-    [id: string]: Message[]
+export type MessagesType = {
+    [id: string]: MessageType[]
 }
-export type DialogsPage = {
-    dialogs: Dialog[]
-    messages: Messages
+export type DialogsPageType = {
+    dialogs: UserType[]
+    messages: MessagesType
 }
-
-export type TPost = {
+export type PostType = {
     id: number
     text: string
     likesCount: number
 }
-export type ProfilePage = {
-    posts: TPost[]
+export type ProfilePageType = {
+    posts: PostType[]
 }
-
-export type State = {
-    dialogsPage: DialogsPage
-    profilePage: ProfilePage
+export type SidebarType = {
+    friends: UserType[]
+}
+export type StateType = {
+    dialogsPage: DialogsPageType
+    profilePage: ProfilePageType
+    sidebar: SidebarType
 }

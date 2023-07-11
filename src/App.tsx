@@ -7,10 +7,10 @@ import {Dialogs} from "./components/dialogs/Dialogs";
 import {Navigate, Route, Routes} from "react-router-dom";
 import {Users} from "./components/users/Users";
 import {state} from "./redux/state";
-import {State} from "./redux/types";
+import {StateType} from "./redux/types";
 
 type AppProps = {
-    state: State
+    state: StateType
 }
 
 const App = ({state}: AppProps) => {
@@ -19,7 +19,7 @@ const App = ({state}: AppProps) => {
 
             <Header/>
             <div className={styles.mainWrapper}>
-                <Navbar/>
+                <Navbar data={state.sidebar}/>
                 <main className={styles.main}>
                     <Routes>
                         <Route path='/' element={<Navigate to='/profile'/>} />
