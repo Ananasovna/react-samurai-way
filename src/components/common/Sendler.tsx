@@ -3,24 +3,32 @@ import styles from './Sendler.module.css';
 import {Button} from "./Button";
 
 type SendlerPropsType = {
-    buttonTitle: string;
-    callBack: (value: string) => void;
+    buttonTitle: string
+    callBack: (value: string) => void
+    onChangeHandler: (text: string) => void
+    value: string
 }
 
-export const Sendler = ({callBack, buttonTitle}: SendlerPropsType) => {
+export const Sendler = ({callBack, buttonTitle, value, onChangeHandler}: SendlerPropsType) => {
 
     const textareaRef = useRef<HTMLTextAreaElement>(null);
 
     const onClickHandler = () => {
         if (textareaRef.current !== null) {
             callBack(textareaRef.current.value);
-            textareaRef.current.value = '';
         }
+    }
+
+    const onChangeTextareaHandler = () => {
+        if (textareaRef.current !== null) {
+            onChangeHandler(textareaRef.current.value)
+        }
+
     }
 
     return (
         <div className={styles.wrapper}>
-            <textarea ref={textareaRef} className={styles.textarea} name="" id=""></textarea>
+            <textarea value={value} onChange={onChangeTextareaHandler} ref={textareaRef} className={styles.textarea} name="" id=""></textarea>
             <Button callBack={onClickHandler} title={buttonTitle} />
         </div>
     )

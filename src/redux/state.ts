@@ -30,7 +30,8 @@ export const state: StateType = {
                 [],
             [id4]:
                 [],
-        }
+        },
+        newMessageText: '',
     },
     profilePage: {
         posts: [
@@ -38,7 +39,8 @@ export const state: StateType = {
             {id: 2, text: 'Hey! It\'s me. Lorem ipsum dolor sit amet, consectetur adipisicing elit.', likesCount: 10},
             {id: 3, text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam delectus eius explicabo iusto labore neque perferendis provident repudiandae tempora veritatis? Adipisci aspernatur autem illo labore quos sunt veniam voluptas. Amet.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam delectus eius explicabo iusto labore neque perferendis provident repudiandae tempora veritatis? Adipisci aspernatur autem illo labore quos sunt veniam voluptas. Amet.', likesCount: 5},
             {id: 4, text: 'Hey! It\'s me', likesCount: 0},
-        ]
+        ],
+        newPostText: '',
     },
     sidebar: {
         friends: [
@@ -51,12 +53,24 @@ export const state: StateType = {
 }
 
 export const addPost = (text: string) => {
-    state.profilePage.posts.push({id: state.profilePage.posts.length, text, likesCount: 0})
-    console.log(state)
-    rerenderApp(state, addMessage, addPost);
+    state.profilePage.posts.push({id: state.profilePage.posts.length + 1, text, likesCount: 0})
+    state.profilePage.newPostText = '';
+    rerenderApp(state, addMessage, updateNewMessageText, addPost, updateNewPostText);
 }
 
-export const addMessage = (text: string, dialogId: string) => {
-    state.dialogsPage.messages[dialogId].push({id: v1(), text, time: '10:00', isOwner: true})
-    rerenderApp(state, addMessage, addPost);
+export const updateNewPostText = (text: string) => {
+    state.profilePage.newPostText = text;
+    rerenderApp(state, addMessage, updateNewMessageText, addPost, updateNewPostText);
 }
+
+export const addMessage = (dialogId: string) => {
+    state.dialogsPage.messages[dialogId].push({id: v1(), text: state.dialogsPage.newMessageText, time: '10:00', isOwner: true})
+    state.dialogsPage.newMessageText = '';
+    rerenderApp(state, addMessage, updateNewMessageText, addPost, updateNewPostText);
+}
+
+export const updateNewMessageText = (text: string) => {
+    state.dialogsPage.newMessageText = text;
+    rerenderApp(state, addMessage, updateNewMessageText, addPost, updateNewPostText);
+}
+

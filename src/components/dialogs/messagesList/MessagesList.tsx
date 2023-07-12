@@ -5,11 +5,13 @@ import {Sendler} from "../../common/Sendler";
 
 type MessagesListProps = {
     messages: MessagesType
+    newMessageText: string
     currentDialogId: string
-    addMessage: (text: string, dialogId: string) => void;
+    addMessage: (dialogId: string) => void
+    updateNewMessageText: (text: string) => void
 }
 
-export const MessagesList = ({currentDialogId, messages, addMessage}: MessagesListProps) => {
+export const MessagesList = ({currentDialogId, messages, addMessage, newMessageText, updateNewMessageText}: MessagesListProps) => {
 
     const getMessages = () => {
         if (currentDialogId) {
@@ -23,13 +25,13 @@ export const MessagesList = ({currentDialogId, messages, addMessage}: MessagesLi
     }
 
     const sendMessage = (value: string) => {
-        addMessage(value, currentDialogId);
+        addMessage(currentDialogId);
     }
 
     return (
         <div className={style.wrapper}>
             {getMessages()}
-            {currentDialogId && <Sendler buttonTitle={'Send'} callBack={sendMessage}/>}
+            {currentDialogId && <Sendler value={newMessageText} buttonTitle={'Send'} callBack={sendMessage} onChangeHandler={updateNewMessageText}/>}
         </div>
     )
 }

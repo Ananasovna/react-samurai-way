@@ -6,9 +6,11 @@ import {addPost} from "../../../redux/state";
 
 type MyPostsProps = {
     data: PostType[]
+    newPostText: string
+    updateNewPostText: (text: string) => void
 }
 
-export const MyPosts = ({data}: MyPostsProps) => {
+export const MyPosts = ({data, updateNewPostText, newPostText}: MyPostsProps) => {
 
     const getPosts = () => {
         return data.map(el => <Post key={el.id} data={el}/>).reverse();
@@ -16,7 +18,7 @@ export const MyPosts = ({data}: MyPostsProps) => {
 
     return (
         <div className={styles.wrapper}>
-            <Sendler buttonTitle={'Save'} callBack={addPost} />
+            <Sendler value={newPostText} buttonTitle={'Save'} callBack={addPost} onChangeHandler={updateNewPostText}/>
             <h1 className={styles.h1}>My posts</h1>
             {getPosts()}
         </div>

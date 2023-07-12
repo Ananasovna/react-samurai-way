@@ -3,18 +3,25 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import {HashRouter} from "react-router-dom";
-import {StateType} from "./redux/types";
+import {AddMessageType, AddPostType, StateType, UpdateTextType} from "./redux/types";
 
+const root = ReactDOM.createRoot(
+    document.getElementById('root') as HTMLElement
+);
 
-export const rerenderApp = (state: StateType,  addMessage: (text: string, dialogId: string) => void, addPost: (text: string) => void) => {
-    const root = ReactDOM.createRoot(
-        document.getElementById('root') as HTMLElement
-    );
+export const rerenderApp = (state: StateType, addMessage: AddMessageType, updateNewMessageText: UpdateTextType, addPost: AddPostType, updateNewPostText: UpdateTextType) => {
+
 
     root.render(
         <React.StrictMode>
             <HashRouter>
-                <App state={state} addMessage={addMessage} addPost={addPost}/>
+                <App
+                    state={state}
+                    addMessage={addMessage}
+                    updateNewMessageText={updateNewMessageText}
+                    addPost={addPost}
+                    updateNewPostText={updateNewPostText}
+                />
             </HashRouter>
         </React.StrictMode>
     );

@@ -1,7 +1,7 @@
 import './index.css';
-import {addMessage, addPost, state} from "./redux/state";
+import {addMessage, addPost, state, updateNewMessageText, updateNewPostText} from "./redux/state";
 import {rerenderApp} from "./render";
 
 
-rerenderApp(state, addMessage, addPost);
+rerenderApp(state, addMessage, updateNewMessageText, addPost, updateNewPostText);
 

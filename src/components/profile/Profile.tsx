@@ -5,10 +5,11 @@ import {ProfilePageType} from "../../redux/types";
 
 type ProfileProps = {
     data: ProfilePageType
-    addPost: (text: string) => void;
+    addPost: (text: string) => void
+    updateNewPostText: (text: string) => void
 }
 
-export const Profile = ({data, addPost}: ProfileProps) => {
+export const Profile = ({data, updateNewPostText, addPost}: ProfileProps) => {
     return (
         <div className={styles.profile}>
             <div className={styles.profileImg}>
@@ -17,7 +18,7 @@ export const Profile = ({data, addPost}: ProfileProps) => {
             </div>
             <div className={styles.content}>
                 <ProfileIno/>
-                <MyPosts data={data.posts}/>
+                <MyPosts data={data.posts} newPostText={data.newPostText} updateNewPostText={updateNewPostText}/>
             </div>
         </div>
 
