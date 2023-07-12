@@ -18,7 +18,7 @@ export const Profile = ({data, updateNewPostText, addPost}: ProfileProps) => {
             </div>
             <div className={styles.content}>
                 <ProfileIno/>
-                <MyPosts data={data.posts} newPostText={data.newPostText} updateNewPostText={updateNewPostText}/>
+                <MyPosts data={data.posts} newPostText={data.newPostText} addPost={addPost} updateNewPostText={updateNewPostText}/>
             </div>
         </div>
 

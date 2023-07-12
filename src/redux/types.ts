@@ -47,3 +47,15 @@ export type AddMessageType = (dialogId: string) => void;
 export type AddPostType = (text: string) => void;
 
 export type UpdateTextType = (text: string) => void;
+
+export type StoreType = {
+    _subscribe: (state: StateType) => void
+    _state: StateType
+    setState: (state: StateType) => void
+    getState: () => StateType
+    callSubscriber: (observer: (state: StateType) => void) => void
+    addPost: AddPostType
+    updateNewPostText: UpdateTextType
+    addMessage: AddMessageType
+    updateNewMessageText: UpdateTextType
+}

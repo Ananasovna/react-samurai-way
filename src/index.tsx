@@ -1,7 +1,32 @@
 import './index.css';
-import {addMessage, addPost, state, updateNewMessageText, updateNewPostText} from "./redux/state";
-import {rerenderApp} from "./render";
+import {store} from "./redux/store";
+import ReactDOM from "react-dom/client";
+import {StateType} from "./redux/types";
+import React from "react";
+import {HashRouter} from "react-router-dom";
+import App from "./App";
 
 
-rerenderApp(state, addMessage, updateNewMessageText, addPost, updateNewPostText);
+const root = ReactDOM.createRoot(
+    document.getElementById('root') as HTMLElement
+);
 
+export const rerenderApp = (state: StateType) => {
+    root.render(
+        <React.StrictMode>
+            <HashRouter>
+                <App
+                    state={store.getState()}
+                    addMessage={store.addMessage}
+                    updateNewMessageText={store.updateNewMessageText}
+                    addPost={store.addPost}
+                    updateNewPostText={store.updateNewPostText}
+                />
+            </HashRouter>
+        </React.StrictMode>
+    );
+}
+
+rerenderApp(store.getState());
+
+store.callSubscriber(rerenderApp);
