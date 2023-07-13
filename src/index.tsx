@@ -16,11 +16,11 @@ export const rerenderApp = (state: StateType) => {
         <React.StrictMode>
             <HashRouter>
                 <App
-                    state={store.getState()}
-                    addMessage={store.addMessage}
-                    updateNewMessageText={store.updateNewMessageText}
-                    addPost={store.addPost}
-                    updateNewPostText={store.updateNewPostText}
+                    state={state}
+                    addMessage={store.addMessage.bind(store)}
+                    updateNewMessageText={store.updateNewMessageText.bind(store)}
+                    addPost={store.addPost.bind(store)}
+                    updateNewPostText={store.updateNewPostText.bind(store)}
                 />
             </HashRouter>
         </React.StrictMode>
@@ -29,4 +29,4 @@ export const rerenderApp = (state: StateType) => {
 
 rerenderApp(store.getState());
 
-store.callSubscriber(rerenderApp);
+store.subscribe(rerenderApp);

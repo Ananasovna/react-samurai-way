@@ -7,7 +7,7 @@ const id3: string = '3';
 const id4: string = '4';
 
 export const store = {
-    _subscribe(state: StateType) {
+    _callSubscriber(state: StateType) {
         console.log('no observers')
     },
 
@@ -96,31 +96,31 @@ export const store = {
         return this._state;
     },
 
-    callSubscriber(observer: (state: StateType) => void) {
-        this._subscribe = observer;
+    subscribe(observer: (state: StateType) => void) {
+        this._callSubscriber = observer;
     },
 
     addPost(text: string) {
-        this.getState().profilePage.posts.push({id: this.getState().profilePage.posts.length + 1, text, likesCount: 0});
-        this.getState().profilePage.newPostText = '';
-        this._subscribe(this.getState());
+        this._state.profilePage.posts.push({id: this.getState().profilePage.posts.length + 1, text, likesCount: 0});
+        this._state.profilePage.newPostText = '';
+        this._callSubscriber(this._state);
     },
 
     updateNewPostText(text: string) {
-        this.getState().profilePage.newPostText = text;
-        this._subscribe(this.getState());
+        this._state.profilePage.newPostText = text;
+        this._callSubscriber(this._state);
 
     },
 
     addMessage(dialogId: string) {
-        this.getState().dialogsPage.messages[dialogId].push({id: v1(), text: this.getState().dialogsPage.newMessageText, time: '10:00', isOwner: true})
-        this.getState().dialogsPage.newMessageText = '';
-        this._subscribe(this.getState());
+        this._state.dialogsPage.messages[dialogId].push({id: v1(), text: this._state.dialogsPage.newMessageText, time: '10:00', isOwner: true})
+        this._state.dialogsPage.newMessageText = '';
+        this._callSubscriber(this._state);
     },
 
     updateNewMessageText(text: string) {
-        this.getState().dialogsPage.newMessageText = text;
-        this._subscribe(this.getState());
+        this._state.dialogsPage.newMessageText = text;
+        this._callSubscriber(this._state);
     },
 }
 
