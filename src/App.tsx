@@ -25,12 +25,16 @@ const App = ({state, addMessage, updateNewMessageText, addPost, updateNewPostTex
                 <Navbar data={state.sidebar}/>
                 <main className={styles.main}>
                     <Routes>
-                        <Route path='/' element={<Navigate to='/profile'/>} />
-                        <Route path='/profile' element={<Profile data={state.profilePage} addPost={addPost} updateNewPostText={updateNewPostText}/>}/>
-                        <Route path='/dialogs/' element={<Dialogs data={state.dialogsPage} addMessage={addMessage} updateNewMessageText={updateNewMessageText}/>}>
-                            <Route path='/dialogs/:id' element={<Dialogs data={state.dialogsPage} addMessage={addMessage} updateNewMessageText={updateNewMessageText}/>}/>
+                        <Route path='/' element={<Navigate to='/profile'/>}/>
+                        <Route path='/profile' element={<Profile data={state.profilePage} addPost={addPost}
+                                                                 updateNewPostText={updateNewPostText}/>}/>
+                        <Route path='/dialogs/' element={<Dialogs data={state.dialogsPage} addMessage={addMessage}
+                                                                  updateNewMessageText={updateNewMessageText}/>}>
+                            <Route path='/dialogs/:id'
+                                   element={<Dialogs data={state.dialogsPage} addMessage={addMessage}
+                                                     updateNewMessageText={updateNewMessageText}/>}/>
                         </Route>
-                        <Route path='/users' element={<Users />}/>
+                        <Route path='/users' element={<Users/>}/>
                     </Routes>
                 </main>
         </div>
