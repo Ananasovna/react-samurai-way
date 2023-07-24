@@ -1,4 +1,5 @@
 import {DialogsReducerActionsType} from "./ducks/dialogs";
+import {ProfileReducerActionsType} from "./ducks/profile";
 
 export type UserType = {
     id: string
@@ -50,7 +51,7 @@ export type AddPostType = (text: string) => void;
 
 export type UpdateTextType = (text: string) => void;
 
-export type DispatchType = (action: DialogsReducerActionsType) => void;
+export type DispatchType = (action: DialogsReducerActionsType | ProfileReducerActionsType) => void;
 
 export type StoreType = {
     _callSubscriber: (state: StateType) => void
@@ -58,7 +59,5 @@ export type StoreType = {
     setState: (state: StateType) => void
     getState: () => StateType
     subscribe: (observer: (state: StateType) => void) => void
-    addPost: AddPostType
-    updateNewPostText: UpdateTextType
     dispatch: DispatchType
 }

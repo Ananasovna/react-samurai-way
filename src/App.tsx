@@ -11,11 +11,9 @@ import {DispatchType, StateType} from "./redux/types";
 type AppProps = {
     state: StateType
     dispatch: DispatchType
-    addPost: (text: string) => void
-    updateNewPostText: (text: string) => void
 }
 
-const App = ({state,  dispatch, addPost, updateNewPostText}: AppProps) => {
+const App = ({state,  dispatch}: AppProps) => {
     return (
         <div className={styles.app}>
 
@@ -25,8 +23,7 @@ const App = ({state,  dispatch, addPost, updateNewPostText}: AppProps) => {
                 <main className={styles.main}>
                     <Routes>
                         <Route path='/' element={<Navigate to='/profile'/>}/>
-                        <Route path='/profile' element={<Profile data={state.profilePage} addPost={addPost}
-                                                                 updateNewPostText={updateNewPostText}/>}/>
+                        <Route path='/profile' element={<Profile data={state.profilePage} dispatch={dispatch}/>}/>
                         <Route path='/dialogs/' element={<Dialogs data={state.dialogsPage}  dispatch={dispatch}/>}>
                             <Route path='/dialogs/:id'
                                    element={<Dialogs data={state.dialogsPage} dispatch={dispatch}/>}/>

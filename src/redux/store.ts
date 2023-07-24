@@ -102,18 +102,6 @@ export const store: StoreType = {
         this._callSubscriber = observer;
     },
 
-    addPost(text: string) {
-        this._state.profilePage.posts.push({id: this.getState().profilePage.posts.length + 1, text: this._state.profilePage.newPostText, likesCount: 0});
-        this._state.profilePage.newPostText = '';
-        this._callSubscriber(this._state);
-    },
-
-    updateNewPostText(text: string) {
-        this._state.profilePage.newPostText = text;
-        this._callSubscriber(this._state);
-
-    },
-
     dispatch(action: DialogsReducerActionsType | ProfileReducerActionsType) {
         this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action as DialogsReducerActionsType);
         this._state.profilePage = profileReducer(this._state.profilePage, action as ProfileReducerActionsType)
