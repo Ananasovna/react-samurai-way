@@ -6,17 +6,16 @@ import {Navbar} from './components/navbar/Navbar';
 import {Dialogs} from "./components/dialogs/Dialogs";
 import {Navigate, Route, Routes} from "react-router-dom";
 import {Users} from "./components/users/Users";
-import {StateType} from "./redux/types";
+import {DispatchType, StateType} from "./redux/types";
 
 type AppProps = {
     state: StateType
-    addMessage: (dialogId: string) => void
-    updateNewMessageText: (text: string) => void
+    dispatch: DispatchType
     addPost: (text: string) => void
     updateNewPostText: (text: string) => void
 }
 
-const App = ({state, addMessage, updateNewMessageText, addPost, updateNewPostText}: AppProps) => {
+const App = ({state,  dispatch, addPost, updateNewPostText}: AppProps) => {
     return (
         <div className={styles.app}>
 
@@ -28,11 +27,9 @@ const App = ({state, addMessage, updateNewMessageText, addPost, updateNewPostTex
                         <Route path='/' element={<Navigate to='/profile'/>}/>
                         <Route path='/profile' element={<Profile data={state.profilePage} addPost={addPost}
                                                                  updateNewPostText={updateNewPostText}/>}/>
-                        <Route path='/dialogs/' element={<Dialogs data={state.dialogsPage} addMessage={addMessage}
-                                                                  updateNewMessageText={updateNewMessageText}/>}>
+                        <Route path='/dialogs/' element={<Dialogs data={state.dialogsPage}  dispatch={dispatch}/>}>
                             <Route path='/dialogs/:id'
-                                   element={<Dialogs data={state.dialogsPage} addMessage={addMessage}
-                                                     updateNewMessageText={updateNewMessageText}/>}/>
+                                   element={<Dialogs data={state.dialogsPage} dispatch={dispatch}/>}/>
                         </Route>
                         <Route path='/users' element={<Users/>}/>
                     </Routes>

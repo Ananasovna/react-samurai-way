@@ -2,15 +2,14 @@ import s from './Dialogs.module.css';
 import {DialogsList} from "./dialogsList/DialogsList";
 import {MessagesList} from "./messagesList/MessagesList";
 import {useParams} from "react-router-dom";
-import {DialogsPageType} from "../../redux/types";
+import {DialogsPageType, DispatchType} from "../../redux/types";
 
 type DialogsProps = {
     data: DialogsPageType
-    addMessage: (dialogId: string) => void
-    updateNewMessageText: (text: string) => void
+    dispatch: DispatchType
 }
 
-export const Dialogs = ({data, addMessage, updateNewMessageText}: DialogsProps) => {
+export const Dialogs = ({data, dispatch}: DialogsProps) => {
 
     const params = useParams();
     let idValue: string = '';
@@ -22,7 +21,8 @@ export const Dialogs = ({data, addMessage, updateNewMessageText}: DialogsProps) 
     return (
         <div className={s.wrapper}>
             <DialogsList dialogs={data.dialogs}/>
-            <MessagesList addMessage={addMessage} updateNewMessageText={updateNewMessageText} currentDialogId={idValue} messages={data.messages} newMessageText={data.newMessageText}/>
+            <MessagesList dispatch={dispatch}
+                          currentDialogId={idValue} messages={data.messages} newMessageText={data.newMessageText}/>
         </div>
     )
 }

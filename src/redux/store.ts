@@ -1,7 +1,7 @@
 import {v1} from "uuid";
 import {StateType, StoreType} from "./types";
-import dialogsReducer from "./ducks/dialogs";
-
+import dialogsReducer, {DialogsReducerActionsType} from "./ducks/dialogs";
+import profileReducer, {ProfileReducerActionsType} from "./ducks/profile";
 
 const id1: string = '1';
 const id2: string = '2';
@@ -103,7 +103,7 @@ export const store: StoreType = {
     },
 
     addPost(text: string) {
-        this._state.profilePage.posts.push({id: this.getState().profilePage.posts.length + 1, text, likesCount: 0});
+        this._state.profilePage.posts.push({id: this.getState().profilePage.posts.length + 1, text: this._state.profilePage.newPostText, likesCount: 0});
         this._state.profilePage.newPostText = '';
         this._callSubscriber(this._state);
     },
@@ -114,18 +114,9 @@ export const store: StoreType = {
 
     },
 
-    addMessage(dialogId: string) {
-        this._state.dialogsPage.messages[dialogId].push({id: v1(), text: this._state.dialogsPage.newMessageText, time: '10:00', isOwner: true})
-        this._state.dialogsPage.newMessageText = '';
+    dispatch(action: DialogsReducerActionsType | ProfileReducerActionsType) {
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action as DialogsReducerActionsType);
+        this._state.profilePage = profileReducer(this._state.profilePage, action as ProfileReducerActionsType)
         this._callSubscriber(this._state);
-    },
-
-    updateNewMessageText(text: string) {
-        this._state.dialogsPage.newMessageText = text;
-        this._callSubscriber(this._state);
-    },
-
-    dispatch(action) {
-        this._state.dialogsPage = dialogsReducer
     },
 }

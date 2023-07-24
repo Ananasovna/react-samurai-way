@@ -1,4 +1,4 @@
-import {DialogsPageType, StateType} from "../../types";
+import {DialogsPageType} from "../../types";
 import {DialogsReducerActionsType} from "./actionCreators";
 import {v1} from "uuid";
 
