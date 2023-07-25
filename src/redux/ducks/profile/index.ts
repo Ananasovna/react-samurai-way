@@ -1,4 +1,4 @@
-import * as profileActionCreators from "./actionCreators";
+import {default as profileActionCreators} from "./actionCreators";
 import {ProfileReducerActionsType} from "./actionCreators";
 import profileReducer from "./reducers";
 

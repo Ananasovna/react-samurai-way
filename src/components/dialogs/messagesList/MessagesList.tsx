@@ -2,7 +2,7 @@ import style from './MessagesList.module.css'
 import {MessageItem} from "./MessageItem";
 import {DispatchType, MessagesType} from "../../../redux/types";
 import {Sendler} from "../../common/Sendler";
-import {addMessage, updateNewMessageText} from "../../../redux/ducks/dialogs/actionCreators";
+import {dialogsActionCreators} from "../../../redux/ducks/dialogs";
 
 type MessagesListProps = {
     messages: MessagesType
@@ -25,13 +25,13 @@ export const MessagesList = ({currentDialogId, messages, newMessageText, dispatc
     }
 
     const sendMessage = (value: string) => {
-        dispatch(addMessage(currentDialogId));
+        dispatch(dialogsActionCreators.addMessage(currentDialogId));
     }
 
     return (
         <div className={style.wrapper}>
             {getMessages()}
-            {currentDialogId && <Sendler value={newMessageText} buttonTitle={'Send'} callBack={sendMessage} onChangeHandler={(value) => dispatch(updateNewMessageText(value))}/>}
+            {currentDialogId && <Sendler value={newMessageText} buttonTitle={'Send'} callBack={sendMessage} onChangeHandler={(value) => dispatch(dialogsActionCreators.updateNewMessageText(value))}/>}
         </div>
     )
 }

@@ -1,6 +1,6 @@
 import {ProfilePageType} from "../../types";
-import {addPost, updateNewPostText} from "./actionCreators";
 import profileReducer from "./reducers";
+import {profileActionCreators} from "./index";
 
 const startState:ProfilePageType = {
     posts: [
@@ -22,7 +22,7 @@ const startState:ProfilePageType = {
 
 test('new post is supposed to be added to messages', () => {
 
-    const action = addPost();
+    const action = profileActionCreators.addPost();
 
     const endState = profileReducer(startState, action);
 
@@ -32,7 +32,7 @@ test('new post is supposed to be added to messages', () => {
 });
 
 test('new text is supposed to be added to newPostText', () => {
-        const action = updateNewPostText('hello');
+        const action = profileActionCreators.updateNewPostText('hello');
 
     const endState = profileReducer(startState, action);
 

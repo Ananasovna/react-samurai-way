@@ -1,5 +1,5 @@
 import dialogsReducer from "./reducers";
-import * as dialogsActionCreators from "./actionCreators";
+import {default as dialogsActionCreators} from "./actionCreators";
 import {DialogsReducerActionsType} from "./actionCreators";
 
 export {dialogsActionCreators};

@@ -1,7 +1,7 @@
 import {v1} from "uuid";
 import {DialogsPageType} from "../../types";
-import {addMessage, updateNewMessageText} from "./actionCreators";
 import dialogsReducer from "./reducers";
+import {dialogsActionCreators} from "./index";
 
 test('new message is supposed to be added to messages', () => {
     const id1: string = '1';
@@ -48,7 +48,7 @@ test('new message is supposed to be added to messages', () => {
             newMessageText: '',
         }
 
-    const action = addMessage(id1);
+    const action = dialogsActionCreators.addMessage(id1);
 
     const endState = dialogsReducer(startState, action);
 
@@ -102,7 +102,7 @@ test('new text is supposed to be added to newMessageText', () => {
         newMessageText: '',
     }
 
-    const action = updateNewMessageText('hello');
+    const action = dialogsActionCreators.updateNewMessageText('hello');
 
     const endState = dialogsReducer(startState, action);
 

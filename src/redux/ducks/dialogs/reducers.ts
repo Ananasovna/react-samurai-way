@@ -1,10 +1,11 @@
 import {DialogsPageType} from "../../types";
 import {DialogsReducerActionsType} from "./actionCreators";
 import {v1} from "uuid";
+import {ADD_MESSAGE, UPDATE_NEW_MESSAGE_TEXT} from "./types";
 
 export const dialogsReducer = (state: DialogsPageType, action: DialogsReducerActionsType) => {
     switch (action.type) {
-        case 'ADD-MESSAGE':
+        case ADD_MESSAGE:
             const stateCopy = {
                 ...state,
                 messages: {
@@ -17,7 +18,7 @@ export const dialogsReducer = (state: DialogsPageType, action: DialogsReducerAct
             };
             stateCopy.newMessageText = '';
             return stateCopy;
-        case 'UPDATE-NEW-MESSAGE-TEXT':
+        case UPDATE_NEW_MESSAGE_TEXT:
             return {...state, newMessageText: action.payload.text};
         default:
             return state;

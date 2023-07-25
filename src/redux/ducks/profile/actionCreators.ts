@@ -12,10 +12,15 @@ export type UpdateNewPostTextActionType = {
 
 export type ProfileReducerActionsType = AddPostActionType | UpdateNewPostTextActionType;
 
-export const addPost = (): AddPostActionType => {
+const addPost = (): AddPostActionType => {
     return {type: ADD_POST};
 }
 
-export const updateNewPostText = (text: string): UpdateNewPostTextActionType => {
+const updateNewPostText = (text: string): UpdateNewPostTextActionType => {
     return {type: UPDATE_NEW_POST_TEXT, payload: {text}};
+}
+
+export default {
+    addPost,
+    updateNewPostText,
 }
