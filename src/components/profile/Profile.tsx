@@ -2,13 +2,10 @@ import styles from './Profile.module.css';
 import {MyPosts} from './myPosts/MyPosts';
 import {ProfileIno} from "./profileInfo/ProfileInfo";
 import {DispatchType, ProfilePageType} from "../../redux/types";
+import {MyPostsContainer} from "./myPosts/MyPostsContainer";
 
-type ProfileProps = {
-    data: ProfilePageType
-    dispatch: DispatchType
-}
 
-export const Profile = ({data, dispatch}: ProfileProps) => {
+export const Profile = () => {
     return (
         <div className={styles.profile}>
             <div className={styles.profileImg}>
@@ -17,7 +14,7 @@ export const Profile = ({data, dispatch}: ProfileProps) => {
             </div>
             <div className={styles.content}>
                 <ProfileIno/>
-                <MyPosts data={data.posts} newPostText={data.newPostText} dispatch={dispatch}/>
+                <MyPostsContainer />
             </div>
         </div>
 

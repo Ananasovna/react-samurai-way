@@ -8,17 +8,18 @@ import {profileActionCreators} from "../../../redux/ducks/profile";
 type MyPostsProps = {
     data: PostType[]
     newPostText: string
-    dispatch: DispatchType
+    addPost: () => void
+    updateNewPostText: (value: string) => void
 }
 
-export const MyPosts = ({data, newPostText, dispatch}: MyPostsProps) => {
+export const MyPosts = ({data, newPostText, addPost, updateNewPostText}: MyPostsProps) => {
     const getPosts = () => {
         return data.map(el => <Post key={el.id} data={el}/>).reverse();
     };
 
     return (
         <div className={styles.wrapper}>
-            <Sendler value={newPostText} buttonTitle={'Save'} callBack={() => dispatch(profileActionCreators.addPost())} onChangeHandler={(value) => dispatch(profileActionCreators.updateNewPostText(value))}/>
+            <Sendler value={newPostText} buttonTitle={'Save'} callBack={() => addPost} onChangeHandler={(value) => updateNewPostText(value)}/>
             <h1 className={styles.h1}>My posts</h1>
             {getPosts()}
         </div>

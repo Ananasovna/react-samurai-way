@@ -25,7 +25,7 @@ const profileReducer = (state: ProfilePageType = initialState, action: ProfileRe
 
     switch (action.type) {
         case ADD_POST:
-            const stateCopy = {
+            return {
                 ...state,
                 posts: [
                     ...state.posts,
@@ -33,7 +33,6 @@ const profileReducer = (state: ProfilePageType = initialState, action: ProfileRe
                 ],
                 newPostText: '',
             };
-            return stateCopy;
         case UPDATE_NEW_POST_TEXT:
             return {...state, newPostText: action.payload.text}
         default:

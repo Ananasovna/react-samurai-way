@@ -8,10 +8,11 @@ type MessagesListProps = {
     messages: MessagesType
     newMessageText: string
     currentDialogId: string
-    dispatch: DispatchType
+    addMessage: (value: string) => void
+    updateNewMessageText: (value: string) => void
 }
 
-export const MessagesList = ({currentDialogId, messages, newMessageText, dispatch}: MessagesListProps) => {
+export const MessagesList = ({currentDialogId, messages, newMessageText, addMessage, updateNewMessageText}: MessagesListProps) => {
 
     const getMessages = () => {
         if (currentDialogId) {
@@ -24,14 +25,10 @@ export const MessagesList = ({currentDialogId, messages, newMessageText, dispatc
         return <div className={style.placeholder}>Choose dialog</div>
     }
 
-    const sendMessage = (value: string) => {
-        dispatch(dialogsActionCreators.addMessage(currentDialogId));
-    }
-
     return (
         <div className={style.wrapper}>
             {getMessages()}
-            {currentDialogId && <Sendler value={newMessageText} buttonTitle={'Send'} callBack={sendMessage} onChangeHandler={(value) => dispatch(dialogsActionCreators.updateNewMessageText(value))}/>}
+            {currentDialogId && <Sendler value={newMessageText} buttonTitle={'Send'} callBack={(value) => addMessage(value)} onChangeHandler={(value) => updateNewMessageText(value)}/>}
         </div>
     )
 }
