@@ -45,11 +45,6 @@ export type StateType = {
     sidebar: SidebarType
 }
 
-export type AddMessageType = (dialogId: string) => void;
-
-export type AddPostType = (text: string) => void;
-
-export type UpdateTextType = (text: string) => void;
 
 export type DispatchType = (action: DialogsReducerActionsType | ProfileReducerActionsType) => void;
 
