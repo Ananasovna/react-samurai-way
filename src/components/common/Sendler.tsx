@@ -4,7 +4,7 @@ import {Button} from "./Button";
 
 type SendlerPropsType = {
     buttonTitle: string
-    callBack: (value: string) => void
+    callBack: () => void
     onChangeHandler: (text: string) => void
     value: string
 }
@@ -15,7 +15,7 @@ export const Sendler = ({callBack, buttonTitle, value, onChangeHandler}: Sendler
 
     const onClickHandler = () => {
         if (textareaRef.current !== null) {
-            callBack(textareaRef.current.value);
+            callBack();
         }
     }
 

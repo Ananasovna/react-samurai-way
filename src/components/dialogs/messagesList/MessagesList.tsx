@@ -28,7 +28,7 @@ export const MessagesList = ({currentDialogId, messages, newMessageText, addMess
     return (
         <div className={style.wrapper}>
             {getMessages()}
-            {currentDialogId && <Sendler value={newMessageText} buttonTitle={'Send'} callBack={(value) => addMessage(value)} onChangeHandler={(value) => updateNewMessageText(value)}/>}
+            {currentDialogId && <Sendler value={newMessageText} buttonTitle={'Send'} callBack={() => addMessage(currentDialogId)} onChangeHandler={(value) => updateNewMessageText(value)}/>}
         </div>
     )
 }

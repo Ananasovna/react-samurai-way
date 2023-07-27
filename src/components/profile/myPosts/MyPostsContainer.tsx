@@ -13,6 +13,7 @@ const mapStateToProps = (state: StateType) => {
 const mapDispatchToProps = (dispatch: DispatchType) => {
     return {
         addPost: () => {
+            console.log(1)
             dispatch(profileActionCreators.addPost())
     },
         updateNewPostText: (value: string) => {

@@ -1,8 +1,7 @@
 import {Post} from './Post';
 import styles from './MyPosts.module.css';
-import {DispatchType, PostType} from "../../../redux/types";
+import {PostType} from "../../../redux/types";
 import {Sendler} from "../../common/Sendler";
-import {profileActionCreators} from "../../../redux/ducks/profile";
 
 
 type MyPostsProps = {
@@ -19,7 +18,7 @@ export const MyPosts = ({data, newPostText, addPost, updateNewPostText}: MyPosts
 
     return (
         <div className={styles.wrapper}>
-            <Sendler value={newPostText} buttonTitle={'Save'} callBack={() => addPost} onChangeHandler={(value) => updateNewPostText(value)}/>
+            <Sendler value={newPostText} buttonTitle={'Save'} callBack={addPost} onChangeHandler={(value) => updateNewPostText(value)}/>
             <h1 className={styles.h1}>My posts</h1>
             {getPosts()}
         </div>
