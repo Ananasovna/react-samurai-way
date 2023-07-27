@@ -6,6 +6,7 @@ import {Navbar} from './components/navbar/Navbar';
 import {Navigate, Route, Routes} from "react-router-dom";
 import {Users} from "./components/users/Users";
 import {DialogsContainer} from "./components/dialogs/DialogsContainer";
+import {NavbarContainer} from "./components/navbar/NavbarContainer";
 
 const App = () => {
     return (
@@ -13,7 +14,7 @@ const App = () => {
 
             <Header/>
             <div className={styles.mainWrapper}>
-                <Navbar />
+                <NavbarContainer />
                 <main className={styles.main}>
                     <Routes>
                         <Route path='/' element={<Navigate to='/profile'/>}/>

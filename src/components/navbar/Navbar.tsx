@@ -5,7 +5,7 @@ import {DialogItem} from "../dialogs/dialogsList/DialogItem";
 import {UserCard} from "../users/UserCard";
 
 type NavbarProps = {
-    data?: SidebarType
+    data: SidebarType
 }
 
 export const Navbar = ({data}: NavbarProps) => {
