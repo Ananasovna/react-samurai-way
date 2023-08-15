@@ -1,7 +1,8 @@
-import {DispatchType, StateType} from "../../redux/types";
+import {DispatchType} from "../../redux/types";
 import {connect} from "react-redux";
 import {dialogsActionCreators} from "../../redux/ducks/dialogs";
 import {Dialogs} from "./Dialogs";
+import {StateType} from "../../redux/store";
 
 const mapStateToProps = (state: StateType) => {
     return {

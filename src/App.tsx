@@ -7,6 +7,7 @@ import {Navigate, Route, Routes} from "react-router-dom";
 import {Users} from "./components/users/Users";
 import {DialogsContainer} from "./components/dialogs/DialogsContainer";
 import {NavbarContainer} from "./components/navbar/NavbarContainer";
+import {UsersContainer} from "./components/users/UsersContainer";
 
 const App = () => {
     return (
@@ -23,7 +24,7 @@ const App = () => {
                             <Route path='/dialogs/:id'
                                    element={<DialogsContainer />}/>
                         </Route>
-                        <Route path='/users' element={<Users/>}/>
+                        <Route path='/users' element={<UsersContainer />}/>
                     </Routes>
                 </main>
         </div>

@@ -11,7 +11,7 @@ export const DialogItem = ({user}: DialogItemProps) => {
     return (
         <NavLink to={`/dialogs/`+ user.id} className={style.wrapper}>
             <div className={style.avatarWrapper}>
-                <img src={user.avatarSrc} alt="avatar" className={style.avatarImg}/>
+                <img src={user.photos.small} alt="avatar" className={style.avatarImg}/>
             </div>
             <div className={style.name}>{user.name}</div>
         </NavLink>

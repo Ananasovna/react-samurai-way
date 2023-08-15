@@ -1,10 +1,17 @@
 import {DialogsReducerActionsType} from "./ducks/dialogs";
 import {ProfileReducerActionsType} from "./ducks/profile";
+import {UsersReducerActionsType} from "./ducks/users";
+import {UsersPageType} from "./ducks/users/reducers";
 
 export type UserType = {
     id: string
+    followed: boolean
     name: string
-    avatarSrc: string
+    photos: {
+        small?: string,
+        large?: string,
+    }
+    status?: string
 }
 
 export type MessageType = {
@@ -39,20 +46,13 @@ export type SidebarType = {
     friends: UserType[]
 }
 
-export type StateType = {
-    dialogsPage: DialogsPageType
-    profilePage: ProfilePageType
-    sidebar: SidebarType
-}
+// export type StateType = {
+//     dialogsPage: DialogsPageType
+//     profilePage: ProfilePageType
+//     sidebar: SidebarType
+//     users: UsersPageType
+// }
 
 
-export type DispatchType = (action: DialogsReducerActionsType | ProfileReducerActionsType) => void;
+export type DispatchType = (action: DialogsReducerActionsType | ProfileReducerActionsType | UsersReducerActionsType) => void;
 
-export type StoreType = {
-    _callSubscriber: (state: StateType) => void
-    _state: StateType
-    setState: (state: StateType) => void
-    getState: () => StateType
-    subscribe: (observer: (state: StateType) => void) => void
-    dispatch: DispatchType
-}

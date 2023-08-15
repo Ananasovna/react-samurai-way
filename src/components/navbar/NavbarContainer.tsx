@@ -1,6 +1,7 @@
 import {connect} from "react-redux";
 import {Navbar} from "./Navbar";
-import {StateType} from "../../redux/types";
+import {StateType} from "../../redux/store";
+
 
 const mapStateToProps = (state: StateType) => {
     return {

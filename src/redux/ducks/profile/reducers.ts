@@ -3,7 +3,7 @@ import {ProfilePageType} from "../../types";
 import {ADD_POST, UPDATE_NEW_POST_TEXT} from "./types";
 import {ProfileReducerActionsType} from "./actionCreators";
 
-const initialState = {
+export const profileInitState = {
     posts: [
         {id: 1, text: 'my first post', likesCount: 2},
         {
@@ -21,7 +21,7 @@ const initialState = {
     newPostText: '',
 }
 
-const profileReducer = (state: ProfilePageType = initialState, action: ProfileReducerActionsType) => {
+const profileReducer = (state: ProfilePageType = profileInitState, action: ProfileReducerActionsType) => {
 
     switch (action.type) {
         case ADD_POST:

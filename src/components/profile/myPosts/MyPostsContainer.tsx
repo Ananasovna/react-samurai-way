@@ -1,7 +1,8 @@
-import {DispatchType, StateType} from "../../../redux/types";
+import {DispatchType} from "../../../redux/types";
 import {profileActionCreators} from "../../../redux/ducks/profile";
 import {MyPosts} from "./MyPosts";
 import {connect} from "react-redux";
+import {StateType} from "../../../redux/store";
 
 const mapStateToProps = (state: StateType) => {
     return {
@@ -13,7 +14,6 @@ const mapStateToProps = (state: StateType) => {
 const mapDispatchToProps = (dispatch: DispatchType) => {
     return {
         addPost: () => {
-            console.log(1)
             dispatch(profileActionCreators.addPost())
     },
         updateNewPostText: (value: string) => {

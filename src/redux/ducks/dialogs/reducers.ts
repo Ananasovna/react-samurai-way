@@ -8,23 +8,39 @@ const id2: string = '2';
 const id3: string = '3';
 const id4: string = '4';
 
-const initialState = {
+export const dialogsInitState: DialogsPageType = {
         dialogs: [
-            {id: id1, name: 'Peter', avatarSrc: 'https://otkritkis.com/wp-content/uploads/2022/06/ra8je.jpg'},
+            {
+                id: id1,
+                followed: false,
+                name: 'Peter',
+                photos: {
+                    small: 'https://otkritkis.com/wp-content/uploads/2022/06/ra8je.jpg'
+                }
+            },
             {
                 id: id2,
+                followed: false,
                 name: 'Anna',
-                avatarSrc: 'https://imgv3.fotor.com/images/gallery/watercolor-female-avatar.jpg'
+                photos: {
+                    small: 'https://imgv3.fotor.com/images/gallery/watercolor-female-avatar.jpg'
+                }
             },
             {
                 id: id3,
+                followed: false,
                 name: 'Roman',
-                avatarSrc: 'https://shapka-youtube.ru/wp-content/uploads/2021/02/prikolnaya-avatarka-dlya-patsanov.jpg'
+                photos: {
+                    small: 'https://shapka-youtube.ru/wp-content/uploads/2021/02/prikolnaya-avatarka-dlya-patsanov.jpg'
+                }
             },
             {
                 id: id4,
+                followed: false,
                 name: 'Dimych',
-                avatarSrc: 'https://kartinkived.ru/wp-content/uploads/2021/12/avatarka-dlya-vatsapa-krasivaya-panda.jpg'
+                photos: {
+                    small: 'https://kartinkived.ru/wp-content/uploads/2021/12/avatarka-dlya-vatsapa-krasivaya-panda.jpg'
+                }
             },
         ],
         messages: {
@@ -46,7 +62,7 @@ const initialState = {
         newMessageText: '',
     }
 
-export const dialogsReducer = (state: DialogsPageType = initialState, action: DialogsReducerActionsType) => {
+const dialogsReducer = (state: DialogsPageType = dialogsInitState, action: DialogsReducerActionsType) => {
     switch (action.type) {
         case ADD_MESSAGE:
             const stateCopy = {
