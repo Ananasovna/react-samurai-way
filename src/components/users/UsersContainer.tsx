@@ -19,7 +19,6 @@ const mapDispatchToProps = (dispatch: DispatchType) => {
         setUsers: async () => {
             try {
                 const response = await axios.get('https://social-network.samuraijs.com/api/1.0/users');
-                console.log(Array.from(response.data.items))
                 dispatch(usersActionCreators.setUsers(Array.from(response.data.items)));
             } catch (err) {
                 console.log(err);

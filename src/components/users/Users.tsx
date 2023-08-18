@@ -1,7 +1,10 @@
 import {UserCard} from "./UserCard";
-import {useEffect} from "react";
+import {Component, useEffect} from "react";
 import {UsersPageType} from "../../redux/ducks/users/reducers";
 import styles from './Users.module.css';
+import {ReactComponent} from "*.svg";
+import axios from "axios";
+import {usersActionCreators} from "../../redux/ducks/users";
 
 type UsersPropsType = {
     users: UsersPageType
@@ -9,15 +12,38 @@ type UsersPropsType = {
     setUsers: () => void
 }
 
-export const Users = ({users, setFollow, setUsers}: UsersPropsType) => {
+// export const Users = ({users, setFollow, setUsers}: UsersPropsType) => {
+//
+//     useEffect(() => {
+//        setUsers();
+//     }, [])
+//
+//     return(
+//         <div className={styles.wrapper}>
+//             {users.users.map(el => <UserCard user={el} />)}
+//         </div>
+//     )
+// }
 
-    useEffect(() => {
-       setUsers();
-    }, [])
+export class Users extends Component<UsersPropsType> {
 
-    return(
-        <div className={styles.wrapper}>
-            {users.users.map(el => <UserCard user={el} />)}
+    componentDidMount() {
+        this.props.setUsers()
+    }
+
+    render() {
+        return <div className={styles.wrapper}>
+            {this.props.users.users.map(el => <UserCard user={el}/>)}
         </div>
-    )
+    }
 }
+// = ({users, setFollow, setUsers}: UsersPropsType) => {
+//
+//     useEffect(() => {
+//         setUsers();
+//     }, [])
+//
+//     return(
+//
+//     )
+// }
