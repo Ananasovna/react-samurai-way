@@ -1,49 +1,40 @@
 import {UserCard} from "./UserCard";
-import {Component, useEffect} from "react";
-import {UsersPageType} from "../../redux/ducks/users/reducers";
+import {Component} from "react";
 import styles from './Users.module.css';
-import {ReactComponent} from "*.svg";
+import {UserType} from "../../redux/types";
 import axios from "axios";
-import {usersActionCreators} from "../../redux/ducks/users";
 
 type UsersPropsType = {
-    users: UsersPageType
+    users: UserType[]
     setFollow: (value: boolean, userId: string) => void
-    setUsers: () => void
+    setUsers: (users: UserType[]) => void
+    pageSize: number
+    totalUsersCount: number
+    currentPage: number
 }
-
-// export const Users = ({users, setFollow, setUsers}: UsersPropsType) => {
-//
-//     useEffect(() => {
-//        setUsers();
-//     }, [])
-//
-//     return(
-//         <div className={styles.wrapper}>
-//             {users.users.map(el => <UserCard user={el} />)}
-//         </div>
-//     )
-// }
 
 export class Users extends Component<UsersPropsType> {
 
     componentDidMount() {
-        this.props.setUsers()
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
+            .then((res) => {
+                this.props.setUsers(res.data.items);
+            })
     }
 
     render() {
+        const pagesCount = Math.ceil(this.props.totalUsersCount / this.props.pageSize);
+
+        const pages = [];
+        for (let i = 1; i <= pagesCount; i++) pages.push(i);
+
         return <div className={styles.wrapper}>
-            {this.props.users.users.map(el => <UserCard user={el}/>)}
+            <div className={`${styles.pagination} `}>
+                {pages.map(p => {
+                    return <div className={`${styles.page} ${this.props.currentPage === p ? styles.selectedPage : ''}`}>{p}</div>
+                }) }
+            </div>
+            {this.props.users.map(el => <UserCard user={el}/>)}
         </div>
     }
 }
-// = ({users, setFollow, setUsers}: UsersPropsType) => {
-//
-//     useEffect(() => {
-//         setUsers();
-//     }, [])
-//
-//     return(
-//
-//     )
-// }

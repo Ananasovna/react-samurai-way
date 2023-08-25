@@ -1,13 +1,16 @@
 import {connect} from "react-redux";
 import {Users} from "./Users";
 import axios from "axios";
-import {DispatchType} from "../../redux/types";
+import {DispatchType, UserType} from "../../redux/types";
 import {usersActionCreators} from "../../redux/ducks/users";
 import {StateType} from "../../redux/store";
 
 const mapStateToProps = (state: StateType) => {
     return {
-       users: state.users,
+        users: state.users.users,
+        pageSize: state.users.pageSize,
+        totalUsersCount: state.users.totalUsersCount,
+        currentPage: state.users.currentPage,
     }
 }
 
@@ -16,15 +19,9 @@ const mapDispatchToProps = (dispatch: DispatchType) => {
         setFollow: (value: boolean, userId: string) => {
             dispatch(usersActionCreators.setFollowed(value, userId));
         },
-        setUsers: async () => {
-            try {
-                const response = await axios.get('https://social-network.samuraijs.com/api/1.0/users');
-                dispatch(usersActionCreators.setUsers(Array.from(response.data.items)));
-            } catch (err) {
-                console.log(err);
-            }
-
-        },
+        setUsers: (users: UserType[]) => {
+            dispatch(usersActionCreators.setUsers(users));
+        }
     }
 }
 

@@ -4,6 +4,9 @@ import {UserType} from "../../types";
 
 export type UsersPageType = {
     users: UserType[]
+    pageSize: number
+    totalUsersCount: number
+    currentPage: number
 }
 
 export const usersInitState: UsersPageType = {
@@ -28,7 +31,10 @@ export const usersInitState: UsersPageType = {
             name: 'Dimych',
             photos: { small: 'https://kartinkived.ru/wp-content/uploads/2021/12/avatarka-dlya-vatsapa-krasivaya-panda.jpg'}
         },
-    ]
+    ],
+    pageSize: 5,
+    totalUsersCount: 0,
+    currentPage: 1,
 }
 
 const usersReducer = (state: UsersPageType = usersInitState, action: UsersReducerActionsType) => {
