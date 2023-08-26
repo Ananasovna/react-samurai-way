@@ -1,5 +1,5 @@
 import {UsersReducerActionsType} from "./actionCreators";
-import {SET_FOLLOWED, SET_USERS} from "./types";
+import {SET_CURRENT_PAGE, SET_FOLLOWED, SET_USERS} from "./types";
 import {UserType} from "../../types";
 
 export type UsersPageType = {
@@ -38,12 +38,13 @@ export const usersInitState: UsersPageType = {
 }
 
 const usersReducer = (state: UsersPageType = usersInitState, action: UsersReducerActionsType) => {
-    console.log('reducer')
     switch (action.type) {
         case SET_FOLLOWED:
             return {...state, users: state.users.map(el => el.id === action.payload.userId ? {...el, followed: action.payload.value} : el)};
         case SET_USERS:
-            return {...state, users: [...action.payload.users]};
+            return {...state, users: [...action.payload.users], totalUsersCount: action.payload.totalUsers};
+        case SET_CURRENT_PAGE:
+            return {...state, currentPage: action.payload.page};
         default:
             return state;
     }

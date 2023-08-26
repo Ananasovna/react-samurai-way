@@ -11,6 +11,9 @@
   margin: 0 auto;
   padding: 20px 0 ;
 
+  --main-dark-color: #2c4d55;
+  --main-light-color: #ffffff;
+
 }
 
 .mainWrapper {
@@ -29,4 +32,6 @@
   overflow: hidden;
   padding: 40px;
 }
+
+
 

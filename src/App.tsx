@@ -2,12 +2,10 @@ import React from 'react';
 import styles from './App.module.css';
 import {Header} from "./components/header/Header";
 import {Profile} from './components/profile/Profile';
-import {Navbar} from './components/navbar/Navbar';
 import {Navigate, Route, Routes} from "react-router-dom";
-import {Users} from "./components/users/Users";
 import {DialogsContainer} from "./components/dialogs/DialogsContainer";
 import {NavbarContainer} from "./components/navbar/NavbarContainer";
-import {UsersContainer} from "./components/users/UsersContainer";
+import UsersContainer from "./components/users/UsersContainer";
 
 const App = () => {
     return (
