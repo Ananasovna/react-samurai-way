@@ -8,7 +8,7 @@ type UsersPropsType = {
     totalUsersCount: number
     currentPage: number
     onClick: (page: number) => void
-    setFollow: (value: boolean, userId: string) => void
+    setFollowed: (value: boolean, userId: string) => void
 }
 
 export const Users = (props: UsersPropsType) => {

@@ -1,11 +1,11 @@
 import React from 'react';
 import styles from './App.module.css';
 import {Header} from "./components/header/Header";
-import {Profile} from './components/profile/Profile';
 import {Navigate, Route, Routes} from "react-router-dom";
 import {DialogsContainer} from "./components/dialogs/DialogsContainer";
 import {NavbarContainer} from "./components/navbar/NavbarContainer";
 import UsersContainer from "./components/users/UsersContainer";
+import ProfileContainer from "./components/profile/ProfileContainer";
 
 const App = () => {
     return (
@@ -17,7 +17,7 @@ const App = () => {
                 <main className={styles.main}>
                     <Routes>
                         <Route path='/' element={<Navigate to='/profile'/>}/>
-                        <Route path='/profile' element={<Profile />}/>
+                        <Route path='/profile' element={<ProfileContainer />}/>
                         <Route path='/dialogs/' element={<DialogsContainer />}>
                             <Route path='/dialogs/:id'
                                    element={<DialogsContainer />}/>

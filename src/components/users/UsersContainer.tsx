@@ -1,47 +1,61 @@
 import {connect} from "react-redux";
 import {Users} from "./Users";
 import axios from "axios";
-import {DispatchType, UserType} from "../../redux/types";
+import {UserType} from "../../redux/types";
 import {usersActionCreators} from "../../redux/ducks/users";
 import {StateType} from "../../redux/store";
 import {Component} from "react";
+import {Preloader} from "../common/Preloader";
 
 type UsersPropsType = {
     users: UserType[]
-    setFollow: (value: boolean, userId: string) => void
+    setFollowed: (value: boolean, userId: string) => void
     setUsers: (users: UserType[], totalUsers: number) => void
     setCurrentPage: (page: number) => void
+    toggleIsFetching: (isFetching: boolean) => void
     pageSize: number
     totalUsersCount: number
     currentPage: number
+    isFetching: boolean
 }
 
 export class UsersContainer extends Component<UsersPropsType> {
 
     componentDidMount() {
+        this.props.toggleIsFetching(true);
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
             .then((res) => {
                 this.props.setUsers(res.data.items, res.data.totalCount);
+                this.props.toggleIsFetching(false);
             })
     }
 
     componentDidUpdate(prevProps: UsersPropsType) {
         if (prevProps.currentPage !== this.props.currentPage) {
+            this.props.toggleIsFetching(true);
             axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
                 .then((res) => {
                     this.props.setUsers(res.data.items, res.data.totalCount);
+                    this.props.toggleIsFetching(false);
                 })
         }
     }
 
     render() {
-        return <Users users={this.props.users}
-                      pageSize={this.props.pageSize}
-                      totalUsersCount={this.props.totalUsersCount}
-                      currentPage={this.props.currentPage}
-                      onClick={(page: number) => this.props.setCurrentPage(page)}
-                      setFollow={this.props.setFollow}
-        />
+        return (
+            <>
+                {this.props.isFetching
+                    ? <Preloader />
+                    : <Users users={this.props.users}
+                             pageSize={this.props.pageSize}
+                             totalUsersCount={this.props.totalUsersCount}
+                             currentPage={this.props.currentPage}
+                             onClick={(page: number) => this.props.setCurrentPage(page)}
+                             setFollowed={this.props.setFollowed}
+                    />}
+            </>
+        )
+
     }
 }
 
@@ -51,21 +65,8 @@ const mapStateToProps = (state: StateType) => {
         pageSize: state.users.pageSize,
         totalUsersCount: state.users.totalUsersCount,
         currentPage: state.users.currentPage,
+        isFetching: state.users.isFetching,
     }
 }
 
-const mapDispatchToProps = (dispatch: DispatchType) => {
-    return {
-        setFollow: (value: boolean, userId: string) => {
-            dispatch(usersActionCreators.setFollowed(value, userId));
-        },
-        setUsers: (users: UserType[], totalUsers: number) => {
-            dispatch(usersActionCreators.setUsers(users, totalUsers));
-        },
-        setCurrentPage: (page: number) => {
-            dispatch(usersActionCreators.setCurrentPage(page));
-        }
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer)
+export default connect(mapStateToProps, {...usersActionCreators})(UsersContainer)

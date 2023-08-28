@@ -2,6 +2,7 @@ import {DialogsReducerActionsType} from "./ducks/dialogs";
 import {ProfileReducerActionsType} from "./ducks/profile";
 import {UsersReducerActionsType} from "./ducks/users";
 import {UsersPageType} from "./ducks/users/reducers";
+import {ProfileType} from "../components/profile/ProfileContainer";
 
 export type UserType = {
     id: string
@@ -40,6 +41,7 @@ export type PostType = {
 export type ProfilePageType = {
     posts: PostType[]
     newPostText: string
+    profile: ProfileType | { }
 }
 
 export type SidebarType = {

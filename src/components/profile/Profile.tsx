@@ -1,11 +1,16 @@
 import styles from './Profile.module.css';
-import {MyPosts} from './myPosts/MyPosts';
 import {ProfileIno} from "./profileInfo/ProfileInfo";
-import {DispatchType, ProfilePageType} from "../../redux/types";
 import {MyPostsContainer} from "./myPosts/MyPostsContainer";
+import {ProfileType} from "./ProfileContainer";
+import {Preloader} from "../common/Preloader";
 
+type ProfilePropsType = {
+    profile: ProfileType
+}
 
-export const Profile = () => {
+export const Profile = ({profile}: ProfilePropsType) => {
+    if (Object.keys(profile).length === 0) return <Preloader />;
+
     return (
         <div className={styles.profile}>
             <div className={styles.profileImg}>
@@ -13,7 +18,7 @@ export const Profile = () => {
                      alt="profile img"/>
             </div>
             <div className={styles.content}>
-                <ProfileIno/>
+                <ProfileIno profile={profile}/>
                 <MyPostsContainer />
             </div>
         </div>

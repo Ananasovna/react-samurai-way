@@ -1,5 +1,5 @@
 import {UsersReducerActionsType} from "./actionCreators";
-import {SET_CURRENT_PAGE, SET_FOLLOWED, SET_USERS} from "./types";
+import {SET_CURRENT_PAGE, SET_FOLLOWED, SET_USERS, TOGGLE_IS_FETCHING} from "./types";
 import {UserType} from "../../types";
 
 export type UsersPageType = {
@@ -7,6 +7,7 @@ export type UsersPageType = {
     pageSize: number
     totalUsersCount: number
     currentPage: number
+    isFetching: boolean
 }
 
 export const usersInitState: UsersPageType = {
@@ -35,6 +36,7 @@ export const usersInitState: UsersPageType = {
     pageSize: 5,
     totalUsersCount: 0,
     currentPage: 1,
+    isFetching: false
 }
 
 const usersReducer = (state: UsersPageType = usersInitState, action: UsersReducerActionsType) => {
@@ -45,6 +47,9 @@ const usersReducer = (state: UsersPageType = usersInitState, action: UsersReduce
             return {...state, users: [...action.payload.users], totalUsersCount: action.payload.totalUsers};
         case SET_CURRENT_PAGE:
             return {...state, currentPage: action.payload.page};
+        case TOGGLE_IS_FETCHING: {
+            return {...state, isFetching: action.payload.isFetching};
+        }
         default:
             return state;
     }
