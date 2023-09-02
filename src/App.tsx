@@ -17,7 +17,7 @@ const App = () => {
                 <main className={styles.main}>
                     <Routes>
                         <Route path='/' element={<Navigate to='/profile'/>}/>
-                        <Route path='/profile' element={<ProfileContainer />}/>
+                        <Route path='/profile/:userId?' element={<ProfileContainer />}/>
                         <Route path='/dialogs/' element={<DialogsContainer />}>
                             <Route path='/dialogs/:id'
                                    element={<DialogsContainer />}/>
