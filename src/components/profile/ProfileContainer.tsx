@@ -1,10 +1,10 @@
-import {Component, ComponentType, FunctionComponent, ReactNode} from "react";
+import {Component} from "react";
 import {Profile} from "./Profile";
 import axios from "axios";
 import {connect} from "react-redux";
 import {profileActionCreators} from "../../redux/ducks/profile";
 import {StateType} from "../../redux/store";
-import { useParams, Params } from 'react-router-dom';
+import {withRouter} from "../../hoc/withRouter";
 
 export type ProfileType = {
     aboutMe: string
@@ -30,24 +30,6 @@ type ProfileContainerPropsType = {
         }
     }
 }
-
-type MapStateToPropsType = {
-    profile: ProfileType
-}
-
-type MapDispatchToPropsType = {
-    addPost: () => void
-    updateNewPostText: (text: string) => void
-    setProfile: (profile: string) => void
-
-}
-
-export function withRouter<T> (Component: ComponentType<T>) {
-    return (function ComponentWithRouterProp(props: T &  Readonly<Params<string>>) {
-        let params = useParams();
-        return <Component {...props} router={{params }} />;
-    });
-};
 
 
 class ProfileContainer extends Component<ProfileContainerPropsType> {
@@ -81,6 +63,10 @@ class ProfileContainer extends Component<ProfileContainerPropsType> {
             <Profile profile={this.props.profile}/>
         )
     }
+}
+
+type MapStateToPropsType = {
+    profile: ProfileType
 }
 
 const mapStateToProps = (state: StateType): MapStateToPropsType => {
