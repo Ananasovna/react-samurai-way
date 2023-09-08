@@ -1,19 +1,19 @@
 import styles from './UserCard.module.css';
 import {UserType} from "../../redux/types";
-import {useState} from "react";
 import {Button} from "../common/Button";
 import {NavLink} from "react-router-dom";
 
 type UserCardProps = {
     user: UserType
+    followUser: (userId: string) => void
+    unfollowUser: (userId: string) => void
 }
 
-export const UserCard = ({user}: UserCardProps) => {
+export const UserCard = ({user, followUser, unfollowUser}: UserCardProps) => {
     const anonymousImg = '/assets/img/anonymousImg.png';
-    const [follow, setFollow] = useState<boolean>(false);
 
     const toggleFollow = () => {
-        setFollow(!follow);
+        user.followed ? unfollowUser(user.id) : followUser(user.id);
     }
 
     return (
@@ -24,7 +24,7 @@ export const UserCard = ({user}: UserCardProps) => {
                 </div>
             </NavLink>
             <div className={styles.name}>{user.name}</div>
-            <Button title={follow ? 'Follow' : 'Unfollow'} callBack={toggleFollow}/>
+            <Button title={user.followed ? 'Unfollow' : 'Follow'} callBack={toggleFollow}/>
         </div>
     )
 }

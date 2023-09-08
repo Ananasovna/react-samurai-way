@@ -6,6 +6,7 @@ import {connect} from "react-redux";
 import {authActionCreators} from "../../redux/ducks/app";
 import {UserDataType} from "../../redux/ducks/app/actionCreators";
 import {AuthType} from "../../redux/ducks/app/reducers";
+import {authAPI} from "../../api/socilaMediaApi";
 
 type HeaderContainerPropsType = AuthType & {
     setIsAuth: (isAuth: boolean) => void
@@ -15,11 +16,12 @@ type HeaderContainerPropsType = AuthType & {
 class HeaderContainer extends Component<HeaderContainerPropsType> {
 
     componentDidMount() {
-        axios.get('https://social-network.samuraijs.com/api/1.0/auth/me', {withCredentials: true})
+        authAPI.me()
             .then(res => {
                 if (res.data.resultCode === 0) {
                     this.props.setUserData(res.data.data);
                     this.props.setIsAuth(true);
+
                 }
             })
     }

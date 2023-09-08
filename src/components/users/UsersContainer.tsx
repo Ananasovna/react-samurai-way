@@ -6,6 +6,7 @@ import {usersActionCreators} from "../../redux/ducks/users";
 import {StateType} from "../../redux/store";
 import {Component} from "react";
 import {Preloader} from "../common/Preloader";
+import {usersAPI} from "../../api/socilaMediaApi";
 
 type UsersPropsType = {
     users: UserType[]
@@ -23,7 +24,7 @@ export class UsersContainer extends Component<UsersPropsType> {
 
     componentDidMount() {
         this.props.toggleIsFetching(true);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
+        usersAPI.get(this.props.currentPage, this.props.pageSize)
             .then((res) => {
                 this.props.setUsers(res.data.items, res.data.totalCount);
                 this.props.toggleIsFetching(false);
@@ -33,12 +34,30 @@ export class UsersContainer extends Component<UsersPropsType> {
     componentDidUpdate(prevProps: UsersPropsType) {
         if (prevProps.currentPage !== this.props.currentPage) {
             this.props.toggleIsFetching(true);
-            axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
+            usersAPI.get(this.props.currentPage, this.props.pageSize)
                 .then((res) => {
                     this.props.setUsers(res.data.items, res.data.totalCount);
                     this.props.toggleIsFetching(false);
                 })
         }
+    }
+
+    followUser(userId: string) {
+        usersAPI.follow(userId)
+            .then(res => {
+                if (res.data.resultCode === 0) {
+                    this.props.setFollowed(true, userId);
+                }
+            })
+    }
+
+    unfollowUser(userId: string) {
+        usersAPI.unfollow(userId)
+            .then(res => {
+                if (res.data.resultCode === 0) {
+                    this.props.setFollowed(false, userId);
+                }
+            })
     }
 
     render() {
@@ -47,11 +66,10 @@ export class UsersContainer extends Component<UsersPropsType> {
                 {this.props.isFetching
                     ? <Preloader />
                     : <Users users={this.props.users}
-                             pageSize={this.props.pageSize}
-                             totalUsersCount={this.props.totalUsersCount}
                              currentPage={this.props.currentPage}
                              onClick={(page: number) => this.props.setCurrentPage(page)}
-                             setFollowed={this.props.setFollowed}
+                             followUser={this.followUser.bind(this)}
+                             unfollowUser={this.unfollowUser.bind(this)}
                     />}
             </>
         )
