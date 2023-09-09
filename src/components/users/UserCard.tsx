@@ -7,9 +7,10 @@ type UserCardProps = {
     user: UserType
     followUser: (userId: string) => void
     unfollowUser: (userId: string) => void
+    followingInProgress: string[]
 }
 
-export const UserCard = ({user, followUser, unfollowUser}: UserCardProps) => {
+export const UserCard = ({user, followUser, unfollowUser, followingInProgress}: UserCardProps) => {
     const anonymousImg = '/assets/img/anonymousImg.png';
 
     const toggleFollow = () => {
@@ -24,7 +25,9 @@ export const UserCard = ({user, followUser, unfollowUser}: UserCardProps) => {
                 </div>
             </NavLink>
             <div className={styles.name}>{user.name}</div>
-            <Button title={user.followed ? 'Unfollow' : 'Follow'} callBack={toggleFollow}/>
+            <Button title={user.followed ? 'Unfollow' : 'Follow'}
+                    callBack={toggleFollow}
+                    disabled={followingInProgress.some(el => el === user.id)}/>
         </div>
     )
 }

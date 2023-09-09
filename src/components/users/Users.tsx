@@ -8,9 +8,10 @@ type UsersPropsType = {
     onClick: (page: number) => void
     followUser: (userId: string) => void
     unfollowUser: (userId: string) => void
+    followingInProgress: string[]
 }
 
-export const Users = ({users,currentPage, onClick, followUser, unfollowUser}: UsersPropsType) => {
+export const Users = ({users, currentPage, onClick, followUser, unfollowUser, followingInProgress}: UsersPropsType) => {
     const pages = [];
     for (let i = 1; i <= 20; i++) pages.push(i);
 
@@ -27,9 +28,9 @@ export const Users = ({users,currentPage, onClick, followUser, unfollowUser}: Us
             </div>
             <div className={styles.users}>
                 {users.map(el => <UserCard key={el.id}
-                                                 user={el}
-                                                 followUser={followUser}
-                                                 unfollowUser={unfollowUser}/>)}
+                                           user={el}
+                                           followUser={followUser}
+                                           unfollowUser={unfollowUser} followingInProgress={followingInProgress}/>)}
             </div>
         </div>
     )

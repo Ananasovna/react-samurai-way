@@ -14,6 +14,8 @@ type UsersPropsType = {
     setUsers: (users: UserType[], totalUsers: number) => void
     setCurrentPage: (page: number) => void
     toggleIsFetching: (isFetching: boolean) => void
+    toggleFollowInProgress: (inProgress: boolean, userId: string) => void
+    followingInProgress: string[]
     pageSize: number
     totalUsersCount: number
     currentPage: number
@@ -43,18 +45,22 @@ export class UsersContainer extends Component<UsersPropsType> {
     }
 
     followUser(userId: string) {
+        this.props.toggleFollowInProgress(true, userId);
         usersAPI.follow(userId)
             .then(res => {
                 if (res.data.resultCode === 0) {
+                    this.props.toggleFollowInProgress(false, userId);
                     this.props.setFollowed(true, userId);
                 }
             })
     }
 
     unfollowUser(userId: string) {
+        this.props.toggleFollowInProgress(true, userId);
         usersAPI.unfollow(userId)
             .then(res => {
                 if (res.data.resultCode === 0) {
+                    this.props.toggleFollowInProgress(false, userId);
                     this.props.setFollowed(false, userId);
                 }
             })
@@ -70,6 +76,7 @@ export class UsersContainer extends Component<UsersPropsType> {
                              onClick={(page: number) => this.props.setCurrentPage(page)}
                              followUser={this.followUser.bind(this)}
                              unfollowUser={this.unfollowUser.bind(this)}
+                             followingInProgress={this.props.followingInProgress}
                     />}
             </>
         )
@@ -84,6 +91,7 @@ const mapStateToProps = (state: StateType) => {
         totalUsersCount: state.users.totalUsersCount,
         currentPage: state.users.currentPage,
         isFetching: state.users.isFetching,
+        followingInProgress: state.users.followingInProgress
     }
 }
 

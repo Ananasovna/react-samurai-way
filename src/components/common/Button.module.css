@@ -1,7 +1,11 @@
 .button {
     color: white;
-    background: #2c4d55;
+    background: var(--main-dark-color);
     border: none;
     border-radius: 5px;
     padding: 10px 15px;
+}
+
+.button:disabled {
+    opacity: 50%;
 }

@@ -1,5 +1,5 @@
 import {UsersReducerActionsType} from "./actionCreators";
-import {SET_CURRENT_PAGE, SET_FOLLOWED, SET_USERS, TOGGLE_IS_FETCHING} from "./types";
+import {SET_CURRENT_PAGE, SET_FOLLOWED, SET_USERS, TOGGLE_FOLLOW_IN_PROGRESS, TOGGLE_IS_FETCHING} from "./types";
 import {UserType} from "../../types";
 
 export type UsersPageType = {
@@ -8,6 +8,7 @@ export type UsersPageType = {
     totalUsersCount: number
     currentPage: number
     isFetching: boolean
+    followingInProgress: string[]
 }
 
 export const usersInitState: UsersPageType = {
@@ -36,19 +37,29 @@ export const usersInitState: UsersPageType = {
     pageSize: 5,
     totalUsersCount: 0,
     currentPage: 1,
-    isFetching: false
+    isFetching: false,
+    followingInProgress: [],
 }
 
 const usersReducer = (state: UsersPageType = usersInitState, action: UsersReducerActionsType) => {
     switch (action.type) {
         case SET_FOLLOWED:
-            return {...state, users: state.users.map(el => el.id === action.payload.userId ? {...el, followed: action.payload.value} : el)};
+            return {...state, users: state.users.map(el => el.id === action.payload.userId
+                    ? {...el, followed: action.payload.value}
+                    : el)};
         case SET_USERS:
             return {...state, users: [...action.payload.users], totalUsersCount: action.payload.totalUsers};
         case SET_CURRENT_PAGE:
             return {...state, currentPage: action.payload.page};
         case TOGGLE_IS_FETCHING: {
             return {...state, isFetching: action.payload.isFetching};
+        }
+        case TOGGLE_FOLLOW_IN_PROGRESS: {
+            return {
+                ...state, followingInProgress: action.payload.inProgress
+                    ? [...state.followingInProgress, action.payload.userId]
+                    : state.followingInProgress.filter(el => el !== action.payload.userId)
+            };
         }
         default:
             return state;

@@ -1,15 +1,12 @@
-import {SET_CURRENT_PAGE, SET_FOLLOWED, SET_USERS, TOGGLE_IS_FETCHING} from "./types";
+import {SET_CURRENT_PAGE, SET_FOLLOWED, SET_USERS, TOGGLE_FOLLOW_IN_PROGRESS, TOGGLE_IS_FETCHING} from "./types";
 import {UserType} from "../../types";
 
-export type SetFollowedActionType = ReturnType<typeof setFollowed>
-export type SetUsersActionType = ReturnType<typeof setUsers>
-export type SetCurrentPageActionType = ReturnType<typeof setCurrentPage>
-export type ToggleIsFetchingActionType = ReturnType<typeof toggleIsFetching>
-
-export type UsersReducerActionsType = SetFollowedActionType
-    | SetUsersActionType
-    | SetCurrentPageActionType
-    | ToggleIsFetchingActionType
+export type UsersReducerActionsType =
+    | ReturnType<typeof setFollowed>
+    | ReturnType<typeof setUsers>
+    | ReturnType<typeof setCurrentPage>
+    | ReturnType<typeof toggleIsFetching>
+    | ReturnType<typeof toggleFollowInProgress>
 
 const setFollowed = (value: boolean, userId: string) => {
     return {type: SET_FOLLOWED, payload: {value, userId}} as const;
@@ -27,9 +24,14 @@ const toggleIsFetching = (isFetching: boolean) => {
     return {type: TOGGLE_IS_FETCHING, payload: {isFetching}} as const;
 }
 
+const toggleFollowInProgress = (inProgress: boolean, userId: string) => {
+    return {type: TOGGLE_FOLLOW_IN_PROGRESS, payload: {inProgress, userId}} as const;
+}
+
 export default {
     setFollowed,
     setUsers,
     setCurrentPage,
     toggleIsFetching,
+    toggleFollowInProgress,
 }
