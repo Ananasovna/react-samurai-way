@@ -1,20 +1,18 @@
 import {connect} from "react-redux";
 import {Users} from "./Users";
-import axios from "axios";
 import {UserType} from "../../redux/types";
-import {usersActionCreators} from "../../redux/ducks/users";
+import {usersActionCreators, usersThunkCreators} from "../../redux/ducks/users";
 import {StateType} from "../../redux/store";
 import {Component} from "react";
 import {Preloader} from "../common/Preloader";
-import {usersAPI} from "../../api/socilaMediaApi";
 
 type UsersPropsType = {
     users: UserType[]
-    setFollowed: (value: boolean, userId: string) => void
-    setUsers: (users: UserType[], totalUsers: number) => void
     setCurrentPage: (page: number) => void
     toggleIsFetching: (isFetching: boolean) => void
-    toggleFollowInProgress: (inProgress: boolean, userId: string) => void
+    getUsers: (currentPage: number, pageSize: number) => void
+    followUser: (userId: string) => void
+    unfollowUser: (userId: string) => void
     followingInProgress: string[]
     pageSize: number
     totalUsersCount: number
@@ -25,45 +23,21 @@ type UsersPropsType = {
 export class UsersContainer extends Component<UsersPropsType> {
 
     componentDidMount() {
-        this.props.toggleIsFetching(true);
-        usersAPI.get(this.props.currentPage, this.props.pageSize)
-            .then((res) => {
-                this.props.setUsers(res.data.items, res.data.totalCount);
-                this.props.toggleIsFetching(false);
-            })
+        this.props.getUsers(this.props.currentPage, this.props.pageSize)
     }
 
     componentDidUpdate(prevProps: UsersPropsType) {
-        if (prevProps.currentPage !== this.props.currentPage) {
-            this.props.toggleIsFetching(true);
-            usersAPI.get(this.props.currentPage, this.props.pageSize)
-                .then((res) => {
-                    this.props.setUsers(res.data.items, res.data.totalCount);
-                    this.props.toggleIsFetching(false);
-                })
+        if (this.props.currentPage !== prevProps.currentPage) {
+            this.props.getUsers(this.props.currentPage, this.props.pageSize)
         }
     }
 
     followUser(userId: string) {
-        this.props.toggleFollowInProgress(true, userId);
-        usersAPI.follow(userId)
-            .then(res => {
-                if (res.data.resultCode === 0) {
-                    this.props.toggleFollowInProgress(false, userId);
-                    this.props.setFollowed(true, userId);
-                }
-            })
+        this.props.followUser(userId);
     }
 
     unfollowUser(userId: string) {
-        this.props.toggleFollowInProgress(true, userId);
-        usersAPI.unfollow(userId)
-            .then(res => {
-                if (res.data.resultCode === 0) {
-                    this.props.toggleFollowInProgress(false, userId);
-                    this.props.setFollowed(false, userId);
-                }
-            })
+        this.props.unfollowUser(userId);
     }
 
     render() {
@@ -95,4 +69,4 @@ const mapStateToProps = (state: StateType) => {
     }
 }
 
-export default connect(mapStateToProps, {...usersActionCreators})(UsersContainer)
+export default connect(mapStateToProps, {...usersActionCreators, ...usersThunkCreators})(UsersContainer)

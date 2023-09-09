@@ -1,21 +1,16 @@
-import {SET_AUTH, SET_USER_DATA} from "./types";
+import {SET_ERROR, SET_STATUS} from "./types";
 
-export type SetIsAuthActionType = ReturnType<typeof setIsAuth>
-export type SetUserDataActionType = ReturnType<typeof setUserData>
+export type AppReducerActionsType =
+    | ReturnType<typeof setError>
+    | ReturnType<typeof setStatus>
 
+export type AppStatusType = 'idle' | 'isLoading';
 
-export type AuthReducerActionsType = SetIsAuthActionType | SetUserDataActionType;
+const setError = (error: string) => ({type: SET_ERROR, error} as const);
+const setStatus = (status: AppStatusType) => ({type: SET_STATUS, status} as const);
 
-export type UserDataType = {
-    email: string | null
-    login: string | null
-    id: number | null
-}
-
-const setIsAuth = (isAuth: boolean) => ({type: SET_AUTH, isAuth} as const);
-const setUserData = (data: UserDataType) => ({type: SET_USER_DATA, data} as const);
 
 export default {
-    setIsAuth,
-    setUserData,
+    setError,
+    setStatus,
 }

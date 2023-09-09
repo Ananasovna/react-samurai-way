@@ -1,12 +1,15 @@
 import {ADD_POST, SET_PROFILE, UPDATE_NEW_POST_TEXT} from "./types";
 import {ProfileType} from "../../../api/socilaMediaApi";
+import {AppReducerActionsType} from "../app";
 
 export type AddPostActionType = ReturnType<typeof addPost>
 export type UpdateNewPostTextActionType = ReturnType<typeof updateNewPostText>
 export type SetProfileActionType = ReturnType<typeof setProfile>
 
 
-export type ProfileReducerActionsType = AddPostActionType
+export type ProfileReducerActionsType =
+    | AppReducerActionsType
+    | AddPostActionType
     | UpdateNewPostTextActionType
     | SetProfileActionType;
 

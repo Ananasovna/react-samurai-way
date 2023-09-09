@@ -28,6 +28,7 @@ const toggleFollowInProgress = (inProgress: boolean, userId: string) => {
     return {type: TOGGLE_FOLLOW_IN_PROGRESS, payload: {inProgress, userId}} as const;
 }
 
+
 export default {
     setFollowed,
     setUsers,

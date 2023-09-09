@@ -1,17 +1,14 @@
 import {Component} from "react";
 import {Profile} from "./Profile";
-import axios from "axios";
 import {connect} from "react-redux";
-import {profileActionCreators} from "../../redux/ducks/profile";
+import {profileActionCreators, profileThunkCreators} from "../../redux/ducks/profile";
 import {StateType} from "../../redux/store";
 import {withRouter} from "../../hoc/withRouter";
-import {ProfileAPI, ProfileType} from "../../api/socilaMediaApi";
+import {ProfileType} from "../../api/socilaMediaApi";
 
 type ProfileContainerPropsType = {
     profile: ProfileType
-    addPost: () => void
-    updateNewPostText: (text: string) => void
-    setProfile: (profile: ProfileType) => void
+    getProfile: (userId: string) => void
     router: {
         params: {
             userId: string
@@ -27,10 +24,7 @@ class ProfileContainer extends Component<ProfileContainerPropsType> {
         if (!userId) {
             userId = '2';
         }
-        ProfileAPI.get(userId)
-            .then((res) => {
-                this.props.setProfile(res.data);
-            })
+        this.props.getProfile(userId);
     }
 
     componentDidUpdate(prevProps: Readonly<ProfileContainerPropsType>, prevState: Readonly<{}>, snapshot?: any) {
@@ -39,10 +33,7 @@ class ProfileContainer extends Component<ProfileContainerPropsType> {
             if (!userId) {
                 userId = '2';
             }
-            ProfileAPI.get(userId)
-                .then((res) => {
-                    this.props.setProfile(res.data);
-                })
+            this.props.getProfile(userId);
         }
     }
 
@@ -64,4 +55,4 @@ const mapStateToProps = (state: StateType): MapStateToPropsType => {
 }
 
 
-export default connect(mapStateToProps, {...profileActionCreators})(withRouter<ProfileContainerPropsType>(ProfileContainer));
+export default connect(mapStateToProps, {...profileActionCreators, ...profileThunkCreators})(withRouter<ProfileContainerPropsType>(ProfileContainer));

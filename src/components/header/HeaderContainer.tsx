@@ -3,27 +3,20 @@ import {Header} from "./Header";
 import axios from "axios";
 import {StateType} from "../../redux/store";
 import {connect} from "react-redux";
-import {authActionCreators} from "../../redux/ducks/app";
-import {UserDataType} from "../../redux/ducks/app/actionCreators";
-import {AuthType} from "../../redux/ducks/app/reducers";
+import {authActionCreators, authThunkCreators} from "../../redux/ducks/auth";
+import {UserDataType} from "../../redux/ducks/auth/actionCreators";
+import {AuthType} from "../../redux/ducks/auth/reducers";
 import {authAPI} from "../../api/socilaMediaApi";
 
 type HeaderContainerPropsType = AuthType & {
     setIsAuth: (isAuth: boolean) => void
-    setUserData: (data: UserDataType) => void
+    authMe: () => void
 }
 
 class HeaderContainer extends Component<HeaderContainerPropsType> {
 
     componentDidMount() {
-        authAPI.me()
-            .then(res => {
-                if (res.data.resultCode === 0) {
-                    this.props.setUserData(res.data.data);
-                    this.props.setIsAuth(true);
-
-                }
-            })
+        this.props.authMe()
     }
 
     render() {
@@ -45,4 +38,4 @@ const mapStateToProps = (state: StateType) => {
     }
 }
 
-export default connect(mapStateToProps, {...authActionCreators})(HeaderContainer);
+export default connect(mapStateToProps, {...authActionCreators, ...authThunkCreators})(HeaderContainer);

@@ -1,3 +1,2 @@
-export const SET_AUTH = 'auth/SET_AUTH';
-export const SET_USER_DATA = 'auth/SET_USER_DATA';
-
+export const SET_ERROR = 'app/SET_ERROR';
+export const SET_STATUS = 'app/SET_STATUS';

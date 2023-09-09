@@ -1,10 +1,11 @@
-import {combineReducers, compose, legacy_createStore} from "redux";
+import {applyMiddleware, combineReducers, compose, legacy_createStore} from "redux";
 import dialogsReducer from "./ducks/dialogs";
 import profileReducer from "./ducks/profile";
 import sidebarReducer from "./ducks/sidebar";
 import usersReducer from "./ducks/users";
-import authReducer from "./ducks/app";
+import authReducer from "./ducks/auth";
 import {composeWithDevTools} from "@redux-devtools/extension";
+import thunk from "redux-thunk";
 
 const rootReducer = combineReducers({
     dialogsPage: dialogsReducer,
@@ -14,7 +15,7 @@ const rootReducer = combineReducers({
     auth: authReducer,
 })
 
-let store = legacy_createStore(rootReducer, composeWithDevTools());
+let store = legacy_createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
 
 export type StateType = ReturnType<typeof store.getState>
 

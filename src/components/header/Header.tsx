@@ -1,5 +1,5 @@
 import styles from './Header.module.css';
-import {AuthType} from "../../redux/ducks/app/reducers";
+import {AuthType} from "../../redux/ducks/auth/reducers";
 
 
 type HeaderPropsType = AuthType

@@ -67,3 +67,4 @@ const usersReducer = (state: UsersPageType = usersInitState, action: UsersReduce
 }
 
 export default usersReducer;
+

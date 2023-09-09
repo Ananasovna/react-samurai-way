@@ -1,7 +1,7 @@
-import {default as authActionCreators, AuthReducerActionsType} from "./actionCreators";
-import authReducer from "./reducers";
+import {AppReducerActionsType, default as appActionCreators} from "./actionCreators";
+import appReducer from "./reducers";
 
-export {authActionCreators};
-export type {AuthReducerActionsType};
+export {appActionCreators};
+export type {AppReducerActionsType};
 
-export default authReducer;
+export default appReducer;

@@ -1,24 +1,23 @@
-import {AuthReducerActionsType} from "./actionCreators";
-import {SET_AUTH, SET_USER_DATA} from "./types";
+import {SET_ERROR, SET_STATUS} from "./types";
+import {AppReducerActionsType, AppStatusType} from "./actionCreators";
 
-export type AuthType = typeof usersInitState;
+type AppInitState = typeof appInitState;
 
-export const usersInitState = {
-    email: null as null | string,
-    login: null as null | string,
-    id: null as null | number,
-    isAuth: false,
+const appInitState = {
+    error: null as string | null,
+    status: 'idle' as AppStatusType,
 }
 
-const authReducer = (state: AuthType = usersInitState, action: AuthReducerActionsType) => {
+const appReducer = (state: AppInitState = appInitState, action: AppReducerActionsType) => {
     switch (action.type) {
-        case SET_USER_DATA:
-            return {...state, ...action.data}
-        case SET_AUTH:
-            return {...state, isAuth: action.isAuth}
+        case SET_ERROR:
+            return {...state, error: action.error};
+        case SET_STATUS:
+            return {...state, status: action.status};
         default:
             return state;
     }
 }
 
-export default authReducer;
+export default appReducer;
+
