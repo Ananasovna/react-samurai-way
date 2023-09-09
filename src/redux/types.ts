@@ -1,8 +1,8 @@
 import {DialogsReducerActionsType} from "./ducks/dialogs";
 import {ProfileReducerActionsType} from "./ducks/profile";
 import {UsersReducerActionsType} from "./ducks/users";
-import {UsersPageType} from "./ducks/users/reducers";
-import {ProfileType} from "../components/profile/ProfileContainer";
+import {ProfileType} from "../api/socilaMediaApi";
+
 
 export type UserType = {
     id: string
@@ -47,14 +47,6 @@ export type ProfilePageType = {
 export type SidebarType = {
     friends: UserType[]
 }
-
-// export type StateType = {
-//     dialogsPage: DialogsPageType
-//     profilePage: ProfilePageType
-//     sidebar: SidebarType
-//     users: UsersPageType
-// }
-
 
 export type DispatchType = (action: DialogsReducerActionsType | ProfileReducerActionsType | UsersReducerActionsType) => void;
 

@@ -1,4 +1,5 @@
-import {ProfileType} from "../ProfileContainer";
+import {ProfileType} from "../../../api/socilaMediaApi";
+
 
 type ProfileInfoPropsType = {
     profile: ProfileType

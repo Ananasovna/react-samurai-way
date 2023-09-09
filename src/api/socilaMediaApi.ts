@@ -30,6 +30,12 @@ export const usersAPI = {
     },
 }
 
+export const ProfileAPI = {
+    get(userId: string) {
+        return instance.get<ProfileType, AxiosResponse<ProfileType>>('profile/' + userId);
+    }
+}
+
 export type ResponseType<T = {}> = {
     resultCode: number
     messages: Array<string>
@@ -46,4 +52,31 @@ export type GetUsersResponseType = {
     items: UserType[]
     totalCount: number
     error: string | null
+}
+
+
+export type Contacts = {
+  facebook?: string;
+  website?: string;
+  vk?: string;
+  twitter?: string;
+  instagram?: string;
+  youtube?: string;
+  github?: string;
+  mainLink?: string;
+}
+
+export interface Photos {
+  small: string;
+  large: string;
+}
+
+export type ProfileType = {
+  aboutMe?: string;
+  contacts: Contacts;
+  lookingForAJob: boolean;
+  lookingForAJobDescription?: string;
+  fullName: string;
+  userId: number;
+  photos: Photos;
 }

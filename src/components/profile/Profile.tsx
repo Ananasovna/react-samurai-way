@@ -1,8 +1,8 @@
 import styles from './Profile.module.css';
 import {ProfileIno} from "./profileInfo/ProfileInfo";
 import {MyPostsContainer} from "./myPosts/MyPostsContainer";
-import {ProfileType} from "./ProfileContainer";
 import {Preloader} from "../common/Preloader";
+import {ProfileType} from "../../api/socilaMediaApi";
 
 type ProfilePropsType = {
     profile: ProfileType

@@ -1,4 +1,5 @@
 import {ADD_POST, SET_PROFILE, UPDATE_NEW_POST_TEXT} from "./types";
+import {ProfileType} from "../../../api/socilaMediaApi";
 
 export type AddPostActionType = ReturnType<typeof addPost>
 export type UpdateNewPostTextActionType = ReturnType<typeof updateNewPostText>
@@ -17,7 +18,7 @@ const updateNewPostText = (text: string) => {
     return {type: UPDATE_NEW_POST_TEXT, payload: {text}} as const;
 }
 
-const setProfile = (profile: string) => {
+const setProfile = (profile: ProfileType) => {
     return {type: SET_PROFILE, payload: {profile}} as const;
 }
 

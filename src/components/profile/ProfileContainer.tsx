@@ -5,25 +5,13 @@ import {connect} from "react-redux";
 import {profileActionCreators} from "../../redux/ducks/profile";
 import {StateType} from "../../redux/store";
 import {withRouter} from "../../hoc/withRouter";
-
-export type ProfileType = {
-    aboutMe: string
-    contacts: {}
-    fullName: string
-    lookingForAJob: boolean
-    lookingForAJobDescription: boolean
-    photos: {
-        large: string,
-        small: string
-    }
-    userId: number
-}
+import {ProfileAPI, ProfileType} from "../../api/socilaMediaApi";
 
 type ProfileContainerPropsType = {
     profile: ProfileType
     addPost: () => void
     updateNewPostText: (text: string) => void
-    setProfile: (profile: string) => void
+    setProfile: (profile: ProfileType) => void
     router: {
         params: {
             userId: string
@@ -39,7 +27,7 @@ class ProfileContainer extends Component<ProfileContainerPropsType> {
         if (!userId) {
             userId = '2';
         }
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/` + userId)
+        ProfileAPI.get(userId)
             .then((res) => {
                 this.props.setProfile(res.data);
             })
@@ -51,7 +39,7 @@ class ProfileContainer extends Component<ProfileContainerPropsType> {
             if (!userId) {
                 userId = '2';
             }
-            axios.get(`https://social-network.samuraijs.com/api/1.0/profile/` + userId)
+            ProfileAPI.get(userId)
                 .then((res) => {
                     this.props.setProfile(res.data);
                 })
