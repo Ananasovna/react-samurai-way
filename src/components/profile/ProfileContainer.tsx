@@ -5,9 +5,11 @@ import {profileActionCreators, profileThunkCreators} from "../../redux/ducks/pro
 import {StateType} from "../../redux/store";
 import {withRouter} from "../../hoc/withRouter";
 import {ProfileType} from "../../api/socilaMediaApi";
+import {Navigate} from "react-router-dom";
 
 type ProfileContainerPropsType = {
     profile: ProfileType
+    isAuth: boolean | null
     getProfile: (userId: string) => void
     router: {
         params: {
@@ -38,6 +40,10 @@ class ProfileContainer extends Component<ProfileContainerPropsType> {
     }
 
     render() {
+        if (this.props.isAuth === false) {
+            return <Navigate to={'/login'}/>
+        }
+
         return (
             <Profile profile={this.props.profile}/>
         )
@@ -46,11 +52,13 @@ class ProfileContainer extends Component<ProfileContainerPropsType> {
 
 type MapStateToPropsType = {
     profile: ProfileType
+    isAuth: boolean | null
 }
 
 const mapStateToProps = (state: StateType): MapStateToPropsType => {
     return {
-        profile: state.profilePage.profile as ProfileType
+        profile: state.profilePage.profile as ProfileType,
+        isAuth: state.auth.isAuth,
     }
 }
 

@@ -7,7 +7,7 @@ export const usersInitState = {
     email: null as null | string,
     login: null as null | string,
     id: null as null | number,
-    isAuth: false,
+    isAuth: null as boolean | null,
 }
 
 const authReducer = (state: AuthType = usersInitState, action: AuthReducerActionsType) => {
