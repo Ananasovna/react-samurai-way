@@ -19,6 +19,10 @@ class HeaderContainer extends Component<HeaderContainerPropsType> {
         this.props.authMe()
     }
 
+    componentDidUpdate() {
+        this.props.authMe()
+    }
+
     render() {
         return <Header
             isAuth={this.props.isAuth}

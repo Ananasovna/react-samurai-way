@@ -11,6 +11,7 @@ const authMe = () => async (dispatch: Dispatch<AuthReducerActionsType>) => {
             dispatch(authActionCreators.setIsAuth(true))
         } else {
             console.log(res.data.messages[0])
+            dispatch(authActionCreators.setIsAuth(false))
         }
     } catch (err) {
         console.log(err);

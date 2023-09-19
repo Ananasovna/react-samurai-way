@@ -6,6 +6,9 @@ import {StateType} from "../../redux/store";
 import {withRouter} from "../../hoc/withRouter";
 import {ProfileType} from "../../api/socilaMediaApi";
 import {Navigate} from "react-router-dom";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
+
+
 
 type ProfileContainerPropsType = {
     profile: ProfileType
@@ -63,4 +66,5 @@ const mapStateToProps = (state: StateType): MapStateToPropsType => {
 }
 
 
-export default connect(mapStateToProps, {...profileActionCreators, ...profileThunkCreators})(withRouter<ProfileContainerPropsType>(ProfileContainer));
+export default withAuthRedirect(connect(mapStateToProps, {...profileActionCreators, ...profileThunkCreators})(withRouter<ProfileContainerPropsType>((ProfileContainer))));
+
