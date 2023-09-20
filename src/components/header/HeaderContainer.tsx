@@ -1,4 +1,4 @@
-import {Component} from "react";
+import {Component, ComponentType} from "react";
 import {Header} from "./Header";
 import axios from "axios";
 import {StateType} from "../../redux/store";
@@ -7,6 +7,7 @@ import {authActionCreators, authThunkCreators} from "../../redux/ducks/auth";
 import {UserDataType} from "../../redux/ducks/auth/actionCreators";
 import {AuthType} from "../../redux/ducks/auth/reducers";
 import {authAPI} from "../../api/socilaMediaApi";
+import {compose} from "redux";
 
 type HeaderContainerPropsType = AuthType & {
     setIsAuth: (isAuth: boolean) => void
@@ -42,4 +43,6 @@ const mapStateToProps = (state: StateType) => {
     }
 }
 
-export default connect(mapStateToProps, {...authActionCreators, ...authThunkCreators})(HeaderContainer);
+export default compose<ComponentType>(
+    connect(mapStateToProps, {...authActionCreators, ...authThunkCreators})
+)(HeaderContainer);

@@ -1,6 +1,8 @@
 import {connect} from "react-redux";
 import {Navbar} from "./Navbar";
 import {StateType} from "../../redux/store";
+import {ComponentType} from "react";
+import {compose} from "redux";
 
 
 const mapStateToProps = (state: StateType) => {
@@ -9,4 +11,4 @@ const mapStateToProps = (state: StateType) => {
     }
 }
 
-export const NavbarContainer = connect(mapStateToProps)(Navbar)
+export const NavbarContainer = compose<ComponentType>(connect(mapStateToProps))(Navbar)

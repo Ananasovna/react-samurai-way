@@ -3,6 +3,9 @@ import {connect} from "react-redux";
 import {dialogsActionCreators} from "../../redux/ducks/dialogs";
 import {Dialogs} from "./Dialogs";
 import {StateType} from "../../redux/store";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
+import {compose} from "redux";
+import {ComponentType} from "react";
 
 const mapStateToProps = (state: StateType) => {
     return {
@@ -22,4 +25,7 @@ const mapDispatchToProps = (dispatch: DispatchType) => {
     }
 }
 
-export const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs)
+export const DialogsContainer = compose<ComponentType> (
+    connect(mapStateToProps, mapDispatchToProps),
+    withAuthRedirect
+)(Dialogs);

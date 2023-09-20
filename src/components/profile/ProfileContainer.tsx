@@ -1,13 +1,12 @@
-import {Component} from "react";
+import {Component, ComponentType} from "react";
 import {Profile} from "./Profile";
 import {connect} from "react-redux";
 import {profileActionCreators, profileThunkCreators} from "../../redux/ducks/profile";
 import {StateType} from "../../redux/store";
 import {withRouter} from "../../hoc/withRouter";
 import {ProfileType} from "../../api/socilaMediaApi";
-import {Navigate} from "react-router-dom";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
-
+import {compose} from "redux";
 
 
 type ProfileContainerPropsType = {
@@ -43,10 +42,6 @@ class ProfileContainer extends Component<ProfileContainerPropsType> {
     }
 
     render() {
-        if (this.props.isAuth === false) {
-            return <Navigate to={'/login'}/>
-        }
-
         return (
             <Profile profile={this.props.profile}/>
         )
@@ -66,5 +61,9 @@ const mapStateToProps = (state: StateType): MapStateToPropsType => {
 }
 
 
-export default withAuthRedirect(connect(mapStateToProps, {...profileActionCreators, ...profileThunkCreators})(withRouter<ProfileContainerPropsType>((ProfileContainer))));
+export default compose<ComponentType>(
+    connect(mapStateToProps, {...profileActionCreators, ...profileThunkCreators}),
+    withRouter,
+    withAuthRedirect,
+)(ProfileContainer)
 

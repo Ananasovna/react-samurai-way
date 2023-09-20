@@ -3,8 +3,10 @@ import {Users} from "./Users";
 import {UserType} from "../../redux/types";
 import {usersActionCreators, usersThunkCreators} from "../../redux/ducks/users";
 import {StateType} from "../../redux/store";
-import {Component} from "react";
+import {Component, ComponentType} from "react";
 import {Preloader} from "../common/Preloader";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
+import {compose} from "redux";
 
 type UsersPropsType = {
     users: UserType[]
@@ -69,4 +71,7 @@ const mapStateToProps = (state: StateType) => {
     }
 }
 
-export default connect(mapStateToProps, {...usersActionCreators, ...usersThunkCreators})(UsersContainer)
+export default compose<ComponentType>(
+    connect(mapStateToProps, {...usersActionCreators, ...usersThunkCreators}),
+    withAuthRedirect
+)(UsersContainer)
