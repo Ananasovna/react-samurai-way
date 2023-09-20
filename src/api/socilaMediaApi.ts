@@ -31,9 +31,17 @@ export const usersAPI = {
 }
 
 export const ProfileAPI = {
-    get(userId: string) {
+    getProfile(userId: string) {
         return instance.get<ProfileType, AxiosResponse<ProfileType>>('profile/' + userId);
-    }
+    },
+
+    getStatus(userId: string) {
+        return instance.get<string, AxiosResponse<string>>('profile/status/' + userId);
+    },
+
+    updateStatus(status: string) {
+        return instance.put<ResponseType, AxiosResponse<ResponseType>>('profile/status/', {status});
+    },
 }
 
 export type ResponseType<T = {}> = {

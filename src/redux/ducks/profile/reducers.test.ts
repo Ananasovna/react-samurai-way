@@ -29,3 +29,11 @@ test('new text is supposed to be added to newPostText', () => {
     expect(endState.posts).toEqual(startState.posts);
 
 });
+
+test('status is supposed to be updated', () => {
+    const action = profileActionCreators.setStatus('hello');
+
+    const endState = profileReducer(startState, action);
+
+    expect(endState.status).toBe('hello');
+});

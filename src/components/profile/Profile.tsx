@@ -6,9 +6,11 @@ import {ProfileType} from "../../api/socilaMediaApi";
 
 type ProfilePropsType = {
     profile: ProfileType
+    status: string | null
+    updateStatus: (status: string) => void
 }
 
-export const Profile = ({profile}: ProfilePropsType) => {
+export const Profile = ({profile, status, updateStatus}: ProfilePropsType) => {
     if (Object.keys(profile).length === 0) return <Preloader />;
 
     return (
@@ -18,7 +20,7 @@ export const Profile = ({profile}: ProfilePropsType) => {
                      alt="profile img"/>
             </div>
             <div className={styles.content}>
-                <ProfileIno profile={profile}/>
+                <ProfileIno profile={profile} status={status} updateStatus={updateStatus}/>
                 <MyPostsContainer />
             </div>
         </div>

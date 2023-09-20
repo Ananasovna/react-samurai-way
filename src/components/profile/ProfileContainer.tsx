@@ -12,7 +12,10 @@ import {compose} from "redux";
 type ProfileContainerPropsType = {
     profile: ProfileType
     isAuth: boolean | null
+    status: string | null
     getProfile: (userId: string) => void
+    getStatus: (userId: string) => void
+    updateStatus: (status: string) => void
     router: {
         params: {
             userId: string
@@ -29,6 +32,7 @@ class ProfileContainer extends Component<ProfileContainerPropsType> {
             userId = '2';
         }
         this.props.getProfile(userId);
+        this.props.getStatus(userId);
     }
 
     componentDidUpdate(prevProps: Readonly<ProfileContainerPropsType>, prevState: Readonly<{}>, snapshot?: any) {
@@ -38,12 +42,13 @@ class ProfileContainer extends Component<ProfileContainerPropsType> {
                 userId = '2';
             }
             this.props.getProfile(userId);
+            this.props.getStatus(userId);
         }
     }
 
     render() {
         return (
-            <Profile profile={this.props.profile}/>
+            <Profile profile={this.props.profile} status={this.props.status} updateStatus={this.props.updateStatus}/>
         )
     }
 }
@@ -51,12 +56,14 @@ class ProfileContainer extends Component<ProfileContainerPropsType> {
 type MapStateToPropsType = {
     profile: ProfileType
     isAuth: boolean | null
+    status: string | null
 }
 
 const mapStateToProps = (state: StateType): MapStateToPropsType => {
     return {
         profile: state.profilePage.profile as ProfileType,
         isAuth: state.auth.isAuth,
+        status: state.profilePage.status
     }
 }
 
