@@ -7,18 +7,14 @@ import {StateType} from "../../../redux/store";
 const mapStateToProps = (state: StateType) => {
     return {
         data: state.profilePage.posts,
-        newPostText: state.profilePage.newPostText
     }
 }
 
 const mapDispatchToProps = (dispatch: DispatchType) => {
     return {
-        addPost: () => {
-            dispatch(profileActionCreators.addPost())
+        addPost: (text: string) => {
+            dispatch(profileActionCreators.addPost(text))
     },
-        updateNewPostText: (value: string) => {
-            dispatch(profileActionCreators.updateNewPostText(value))
-        }
     }
 }
 

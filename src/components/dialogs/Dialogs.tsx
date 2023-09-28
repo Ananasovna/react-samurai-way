@@ -7,11 +7,11 @@ import {DialogsPageType} from "../../redux/types";
 type DialogsProps = {
     data: DialogsPageType
     isAuth: boolean | null
-    addMessage: (currentDialogId:  string) => void
+    addMessage: (currentDialogId:  string, text: string) => void
     updateNewMessageText: (value: string) => void
 }
 
-export const Dialogs = ({data, addMessage, updateNewMessageText, isAuth}: DialogsProps) => {
+export const Dialogs = ({data, addMessage, isAuth}: DialogsProps) => {
     const params = useParams();
     let idValue: string = '';
 
@@ -27,8 +27,7 @@ export const Dialogs = ({data, addMessage, updateNewMessageText, isAuth}: Dialog
     return (
         <div className={s.wrapper}>
             <DialogsList dialogs={data.dialogs}/>
-            <MessagesList addMessage={addMessage} updateNewMessageText={updateNewMessageText}
-                          currentDialogId={idValue} messages={data.messages} newMessageText={data.newMessageText}/>
+            <MessagesList addMessage={addMessage} currentDialogId={idValue} messages={data.messages}/>
         </div>
     )
 }

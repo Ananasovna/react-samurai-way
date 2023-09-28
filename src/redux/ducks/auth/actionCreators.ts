@@ -8,6 +8,7 @@ export type AuthReducerActionsType =
     | SetIsAuthActionType
     | SetUserDataActionType;
 
+
 export type UserDataType = {
     email: string | null
     login: string | null

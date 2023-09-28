@@ -29,7 +29,6 @@ export type MessagesType = {
 export type DialogsPageType = {
     dialogs: UserType[]
     messages: MessagesType
-    newMessageText: string
 }
 
 export type PostType = {
@@ -40,7 +39,6 @@ export type PostType = {
 
 export type ProfilePageType = {
     posts: PostType[]
-    newPostText: string
     profile: ProfileType | { }
     status: string | null
 }

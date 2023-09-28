@@ -4,10 +4,6 @@ import dialogsReducer, {dialogsInitState} from "./reducers";
 import {dialogsActionCreators} from "./index";
 
 const id1: string = '1';
-const id2: string = '2';
-const id3: string = '3';
-const id4: string = '4';
-
 
 let startState: DialogsPageType;
 
@@ -16,7 +12,7 @@ beforeEach(() => {
 })
 
 test('new message is supposed to be added to messages', () => {
-    const action = dialogsActionCreators.addMessage(id1);
+    const action = dialogsActionCreators.addMessage(id1, 'hello');
 
     const endState = dialogsReducer(startState, action);
 
@@ -25,12 +21,3 @@ test('new message is supposed to be added to messages', () => {
 
 });
 
-test('new text is supposed to be added to newMessageText', () => {
-    const action = dialogsActionCreators.updateNewMessageText('hello');
-
-    const endState = dialogsReducer(startState, action);
-
-    expect(endState.newMessageText).toBe('hello');
-    expect(endState.dialogs).toEqual(startState.dialogs);
-
-});

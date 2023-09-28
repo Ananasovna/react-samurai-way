@@ -16,12 +16,10 @@ const mapStateToProps = (state: StateType) => {
 
 const mapDispatchToProps = (dispatch: DispatchType) => {
     return {
-        addMessage: (currentDialogId:  string) => {
-            dispatch(dialogsActionCreators.addMessage(currentDialogId));
+        addMessage: (currentDialogId:  string, text: string) => {
+            dispatch(dialogsActionCreators.addMessage(currentDialogId, text));
         },
-        updateNewMessageText: (value: string) => {
-            dispatch(dialogsActionCreators.updateNewMessageText(value))
-        }
+
     }
 }
 

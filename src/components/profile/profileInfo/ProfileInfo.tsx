@@ -8,7 +8,7 @@ type ProfileInfoPropsType = {
     updateStatus: (status: string) => void
 }
 
-export const ProfileIno = ({profile, status, updateStatus}: ProfileInfoPropsType) => {
+export const ProfileInfo = ({profile, status, updateStatus}: ProfileInfoPropsType) => {
 
     return (
         <div>

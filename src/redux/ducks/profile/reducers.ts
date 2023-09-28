@@ -1,6 +1,6 @@
 import {ProfilePageType} from "../../types";
 
-import {ADD_POST, SET_PROFILE, SET_STATUS, UPDATE_NEW_POST_TEXT} from "./types";
+import {ADD_POST, SET_PROFILE, SET_STATUS} from "./types";
 import {ProfileReducerActionsType} from "./actionCreators";
 
 export const profileInitState = {
@@ -18,7 +18,6 @@ export const profileInitState = {
         },
         {id: 4, text: 'Hey! It\'s me', likesCount: 0},
     ],
-    newPostText: '',
     profile: {},
     status: null,
 }
@@ -31,13 +30,9 @@ const profileReducer = (state: ProfilePageType = profileInitState, action: Profi
                 ...state,
                 posts: [
                     ...state.posts,
-                    {id: state.posts.length + 1, text: state.newPostText, likesCount: 0}
-                ],
-                newPostText: '',
+                    {id: state.posts.length + 1, text: action.payload.text, likesCount: 0}
+                ]
             };
-        case UPDATE_NEW_POST_TEXT: {
-            return {...state, newPostText: action.payload.text};
-        }
         case SET_PROFILE: {
             return {...state, profile: action.payload.profile};
         }

@@ -14,6 +14,13 @@ export const authAPI = {
         return instance.get<ResponseType<AuthDataType>, AxiosResponse<ResponseType<AuthDataType>>>('auth/me');
     },
 
+    login(email: string, password: string, rememberMe: boolean) {
+        return instance.post<ResponseType<{userId: number}>, AxiosResponse<ResponseType<{userId: number}>>>('auth/login', {email, password, rememberMe});
+    },
+
+    logout() {
+        return instance.delete<ResponseType, AxiosResponse<ResponseType>>('auth/login');
+    },
 }
 
 export const usersAPI = {

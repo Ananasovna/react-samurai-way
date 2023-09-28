@@ -1,8 +1,8 @@
 import styles from './Profile.module.css';
-import {ProfileIno} from "./profileInfo/ProfileInfo";
 import {MyPostsContainer} from "./myPosts/MyPostsContainer";
 import {Preloader} from "../common/Preloader";
 import {ProfileType} from "../../api/socilaMediaApi";
+import {ProfileInfo} from "./profileInfo/ProfileInfo";
 
 type ProfilePropsType = {
     profile: ProfileType
@@ -20,7 +20,7 @@ export const Profile = ({profile, status, updateStatus}: ProfilePropsType) => {
                      alt="profile img"/>
             </div>
             <div className={styles.content}>
-                <ProfileIno profile={profile} status={status} updateStatus={updateStatus}/>
+                <ProfileInfo profile={profile} status={status} updateStatus={updateStatus}/>
                 <MyPostsContainer />
             </div>
         </div>

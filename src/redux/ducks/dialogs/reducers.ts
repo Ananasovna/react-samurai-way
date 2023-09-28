@@ -1,7 +1,7 @@
 import {DialogsPageType} from "../../types";
 import {DialogsReducerActionsType} from "./actionCreators";
 import {v1} from "uuid";
-import {ADD_MESSAGE, UPDATE_NEW_MESSAGE_TEXT} from "./types";
+import {ADD_MESSAGE} from "./types";
 
 const id1: string = '1';
 const id2: string = '2';
@@ -59,7 +59,6 @@ export const dialogsInitState: DialogsPageType = {
             [id4]:
                 [],
         },
-        newMessageText: '',
     }
 
 const dialogsReducer = (state: DialogsPageType = dialogsInitState, action: DialogsReducerActionsType) => {
@@ -71,14 +70,12 @@ const dialogsReducer = (state: DialogsPageType = dialogsInitState, action: Dialo
                     ...state.messages,
                     [action.payload.dialogId]: [
                         ...state.messages[action.payload.dialogId],
-                        {id: v1(), text: state.newMessageText, time: '10:00', isOwner: true}
+                        {id: v1(), text: action.payload.text, time: '10:00', isOwner: true}
                     ]
                 }
             };
-            stateCopy.newMessageText = '';
+
             return stateCopy;
-        case UPDATE_NEW_MESSAGE_TEXT:
-            return {...state, newMessageText: action.payload.text};
         default:
             return state;
     }

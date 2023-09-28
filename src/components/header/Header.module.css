@@ -1,9 +1,7 @@
 .header {
-    grid-area: header;
-    display: grid;
-    grid-template-areas:
-    "logo";
-    grid-template-columns: 90px 1fr;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     position: relative;
     z-index: 10;
     padding: 20px 60px;
@@ -13,7 +11,6 @@
 }
 
 .logo {
-    grid-area: logo;
     height: 80px;
     width: 80px;
     overflow: hidden;

@@ -1,6 +1,16 @@
 import {Field, FormikProvider, useFormik} from "formik";
 
-export const LoginForm = () => {
+type LoginFormPropsType = {
+    onSubmit: (formData: LoginFormDataType) => void
+}
+
+export type LoginFormDataType = {
+    email: string
+    password: string
+    rememberMe?: boolean | undefined
+}
+
+export const LoginForm = ({onSubmit}: LoginFormPropsType) => {
 
     const formik = useFormik({
         initialValues: {
@@ -9,8 +19,8 @@ export const LoginForm = () => {
             rememberMe: false,
         },
         onSubmit: (values, {resetForm}) => {
-            console.log(values);
-            resetForm()
+            onSubmit(values);
+            resetForm();
         },
     });
 

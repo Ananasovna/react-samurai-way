@@ -9,9 +9,8 @@ beforeEach(() => {
 })
 
 test('new post is supposed to be added to messages', () => {
-    startState.newPostText = 'hello';
 
-    const action = profileActionCreators.addPost();
+    const action = profileActionCreators.addPost('hello');
 
     const endState = profileReducer(startState, action);
 
@@ -20,15 +19,6 @@ test('new post is supposed to be added to messages', () => {
 
 });
 
-test('new text is supposed to be added to newPostText', () => {
-        const action = profileActionCreators.updateNewPostText('hello');
-
-    const endState = profileReducer(startState, action);
-
-    expect(endState.newPostText).toBe('hello');
-    expect(endState.posts).toEqual(startState.posts);
-
-});
 
 test('status is supposed to be updated', () => {
     const action = profileActionCreators.setStatus('hello');

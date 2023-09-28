@@ -12,6 +12,7 @@ import {compose} from "redux";
 type HeaderContainerPropsType = AuthType & {
     setIsAuth: (isAuth: boolean) => void
     authMe: () => void
+    logoutUser: () => void
 }
 
 class HeaderContainer extends Component<HeaderContainerPropsType> {
@@ -30,6 +31,7 @@ class HeaderContainer extends Component<HeaderContainerPropsType> {
             id={this.props.id}
             email={this.props.email}
             login={this.props.login}
+            logoutUser={this.props.logoutUser}
         />
     }
 }

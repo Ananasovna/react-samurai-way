@@ -1,18 +1,15 @@
 import style from './MessagesList.module.css'
 import {MessageItem} from "./MessageItem";
-import {DispatchType, MessagesType} from "../../../redux/types";
-import {Sendler} from "../../common/Sendler";
-import {dialogsActionCreators} from "../../../redux/ducks/dialogs";
+import {MessagesType} from "../../../redux/types";
+import {SendTextForm} from "../../common/SendTextForm";
 
 type MessagesListProps = {
     messages: MessagesType
-    newMessageText: string
     currentDialogId: string
-    addMessage: (value: string) => void
-    updateNewMessageText: (value: string) => void
+    addMessage: (value: string, text: string) => void
 }
 
-export const MessagesList = ({currentDialogId, messages, newMessageText, addMessage, updateNewMessageText}: MessagesListProps) => {
+export const MessagesList = ({currentDialogId, messages, addMessage}: MessagesListProps) => {
 
     const getMessages = () => {
         if (currentDialogId) {
@@ -28,7 +25,7 @@ export const MessagesList = ({currentDialogId, messages, newMessageText, addMess
     return (
         <div className={style.wrapper}>
             {getMessages()}
-            {currentDialogId && <Sendler value={newMessageText} buttonTitle={'Send'} callBack={() => addMessage(currentDialogId)} onChangeHandler={(value) => updateNewMessageText(value)}/>}
+            {currentDialogId && <SendTextForm buttonTitle={'Send'} callBack={(text) => addMessage(currentDialogId, text)} />}
         </div>
     )
 }
