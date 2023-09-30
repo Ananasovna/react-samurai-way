@@ -19,33 +19,3 @@
     padding: 10px;
 }
 
-.error {
-    width: fit-content;
-    position: absolute;
-    right: 180px;
-    top: -40px;
-    color: darkred;
-    font-weight: 600;
-    padding: 5px 10px;
-    background: white;
-    border: 2px solid darkred;
-    border-radius: 10px;
-    box-shadow: 5px 5px 5px 1px rgba(0 , 0, 0, 0.2);
-}
-
-.error:before {
-    border: 12px solid transparent;
-    border-top-color: darkred;
-    position:absolute;
-    bottom: -24px;
-    right: 15px;
-    content:'';
-}
-.error:after {
-    border: 12px solid transparent;
-    border-top-color: white;
-    position:absolute;
-    bottom: -22px;
-    right: 15px;
-    content:'';
-}

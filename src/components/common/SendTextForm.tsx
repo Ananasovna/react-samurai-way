@@ -2,6 +2,7 @@ import React, {ChangeEvent, useEffect, useState} from "react";
 import styles from './SendTextForm.module.css'
 import {Button} from "./Button";
 import {Field, FormikProvider, useFormik} from "formik";
+import {ErrorCloud} from "./ErrorCloud";
 
 type SendTextFormPropsType = {
     buttonTitle: string
@@ -52,7 +53,7 @@ export const SendTextForm = ({callBack, buttonTitle}: SendTextFormPropsType) => 
     return (
         <FormikProvider value={formik}>
             <form onSubmit={formik.handleSubmit} className={styles.wrapper}>
-                {isErrorVisible && <div className={styles.error}>{formik.errors.text}</div> }
+                {isErrorVisible && <ErrorCloud text={formik.errors.text!}/> }
                 <Field value={formik.values.text}
                        onChange={onChangeHandler} className={styles.textarea}
                        name="text"

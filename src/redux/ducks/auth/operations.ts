@@ -4,6 +4,7 @@ import {authAPI} from "../../../api/socilaMediaApi";
 import {authActionCreators} from "./index";
 import {ThunkAction} from "redux-thunk";
 import {AppThunk, StateType} from "../../store";
+import {appActionCreators} from "../app";
 
 const authMe = () => async (dispatch: Dispatch<AuthReducerActionsType>) => {
     try {
@@ -27,6 +28,7 @@ const loginUser = (email: string, password: string, rememberMe = false): AppThun
         if (res.data.resultCode === 0) {
             await dispatch(authMe());
         } else {
+            await dispatch(appActionCreators.setError(res.data.messages[0]));
         }
     } catch (err) {
         console.log(err);

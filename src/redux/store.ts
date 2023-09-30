@@ -6,6 +6,7 @@ import usersReducer from "./ducks/users";
 import authReducer from "./ducks/auth";
 import {composeWithDevTools} from "@redux-devtools/extension";
 import thunk, {ThunkAction} from "redux-thunk";
+import appReducer from "./ducks/app";
 
 const rootReducer = combineReducers({
     dialogsPage: dialogsReducer,
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
     sidebar: sidebarReducer,
     users: usersReducer,
     auth: authReducer,
+    app: appReducer,
 })
 
 let store = legacy_createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));

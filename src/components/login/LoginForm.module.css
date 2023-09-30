@@ -1,0 +1,17 @@
+.wrapper{
+    width: fit-content;
+}
+
+.form {
+    width: 250px;
+}
+
+.form input {
+    width: 100%;
+}
+
+.fieldWrapper {
+    width: auto;
+    height: 40px;
+    position: relative;
+}
