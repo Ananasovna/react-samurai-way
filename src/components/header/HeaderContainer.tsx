@@ -1,12 +1,9 @@
 import {Component, ComponentType} from "react";
 import {Header} from "./Header";
-import axios from "axios";
 import {StateType} from "../../redux/store";
 import {connect} from "react-redux";
 import {authActionCreators, authThunkCreators} from "../../redux/ducks/auth";
-import {UserDataType} from "../../redux/ducks/auth/actionCreators";
 import {AuthType} from "../../redux/ducks/auth/reducers";
-import {authAPI} from "../../api/socilaMediaApi";
 import {compose} from "redux";
 
 type HeaderContainerPropsType = AuthType & {
@@ -16,14 +13,6 @@ type HeaderContainerPropsType = AuthType & {
 }
 
 class HeaderContainer extends Component<HeaderContainerPropsType> {
-
-    componentDidMount() {
-        this.props.authMe()
-    }
-
-    componentDidUpdate() {
-        this.props.authMe()
-    }
 
     render() {
         return <Header

@@ -7,6 +7,7 @@ import {ErrorCloud} from "../common/ErrorCloud";
 type LoginFormPropsType = {
     onSubmit: (formData: LoginFormDataType) => void
     appError: string | null
+    setError: (error: string | null) => void
 }
 
 export type LoginFormDataType = {
@@ -15,7 +16,7 @@ export type LoginFormDataType = {
     rememberMe?: boolean | undefined
 }
 
-export const LoginForm = ({onSubmit, appError}: LoginFormPropsType) => {
+export const LoginForm = ({onSubmit, appError, setError}: LoginFormPropsType) => {
 
     const formik = useFormik({
         initialValues: {
@@ -34,6 +35,7 @@ export const LoginForm = ({onSubmit, appError}: LoginFormPropsType) => {
         onSubmit: (values, {resetForm}) => {
             onSubmit(values);
             resetForm();
+            setError(null);
         },
     });
 
@@ -51,7 +53,7 @@ export const LoginForm = ({onSubmit, appError}: LoginFormPropsType) => {
                     <div className={styles.fieldWrapper}>
                         {formik.touched.password && formik.errors.password &&
                             <ErrorCloud text={formik.errors.password}/>}
-                        <Field placeholder="Password" {...formik.getFieldProps('password')}/>
+                        <Field type={'password'} placeholder="Password" {...formik.getFieldProps('password')}/>
                     </div>
                     <div>
                         <Field type='checkbox' onChange={formik.handleChange} name='rememberMe'/>

@@ -3,5 +3,7 @@ import s from './Preloader.module.css';
 export const Preloader = () => {
     const preloader = '/assets/gif/Preloader.gif';
 
-    return <div className={s.preloader}><img src={preloader} alt="loading"/></div>
+    return <div className={s.wrapper}>
+        <div className={s.preloader}><img src={preloader} alt="loading"/></div>
+    </div>
 }

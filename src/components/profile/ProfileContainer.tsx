@@ -16,6 +16,7 @@ type ProfileContainerPropsType = {
     getProfile: (userId: string) => void
     getStatus: (userId: string) => void
     updateStatus: (status: string) => void
+    authUserId: number | null
     router: {
         params: {
             userId: string
@@ -28,8 +29,8 @@ class ProfileContainer extends Component<ProfileContainerPropsType> {
 
     componentDidMount() {
         let userId = this.props.router.params.userId;
-        if (!userId) {
-            userId = '2';
+        if (!userId && this.props.authUserId) {
+            userId = this.props.authUserId.toString();
         }
         this.props.getProfile(userId);
         this.props.getStatus(userId);
@@ -38,8 +39,8 @@ class ProfileContainer extends Component<ProfileContainerPropsType> {
     componentDidUpdate(prevProps: Readonly<ProfileContainerPropsType>, prevState: Readonly<{}>, snapshot?: any) {
         if (prevProps.router.params.userId !== this.props.router.params.userId) {
             let userId = this.props.router.params.userId;
-            if (!userId) {
-                userId = '2';
+            if (!userId && this.props.authUserId) {
+                userId = this.props.authUserId.toString();
             }
             this.props.getProfile(userId);
             this.props.getStatus(userId);
@@ -48,6 +49,7 @@ class ProfileContainer extends Component<ProfileContainerPropsType> {
 
     render() {
         return (
+
             <Profile profile={this.props.profile} status={this.props.status} updateStatus={this.props.updateStatus}/>
         )
     }
@@ -57,13 +59,15 @@ type MapStateToPropsType = {
     profile: ProfileType
     isAuth: boolean | null
     status: string | null
+    authUserId: number | null
 }
 
 const mapStateToProps = (state: StateType): MapStateToPropsType => {
     return {
         profile: state.profilePage.profile as ProfileType,
         isAuth: state.auth.isAuth,
-        status: state.profilePage.status
+        status: state.profilePage.status,
+        authUserId: state.auth.id,
     }
 }
 

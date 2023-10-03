@@ -4,14 +4,16 @@ import {authThunkCreators} from "../../redux/ducks/auth";
 import {Navigate} from "react-router-dom";
 import {StateType} from "../../redux/store";
 import {LoginForm, LoginFormDataType} from "./LoginForm";
+import {appActionCreators} from "../../redux/ducks/app";
 
 type LoginPropsType = {
     loginUser: (email: string, password: string, rememberMe?: boolean | undefined) => void
     isAuth: boolean | null
     appError: string | null
+    setError: (error: string | null) => void
 }
 
-const Login = ({loginUser, isAuth, appError}: LoginPropsType) => {
+const Login = ({loginUser, isAuth, appError, setError}: LoginPropsType) => {
     const onSubmit = ({email, password, rememberMe}: LoginFormDataType) => {
         loginUser(email, password, rememberMe);
     }
@@ -20,7 +22,7 @@ const Login = ({loginUser, isAuth, appError}: LoginPropsType) => {
 
     return (
         <>
-            <LoginForm onSubmit={onSubmit} appError={appError}/>
+            <LoginForm onSubmit={onSubmit} appError={appError} setError={setError}/>
         </>
     )
 }
@@ -32,4 +34,4 @@ const mapStateToProps = (state:StateType) => {
    }
 }
 
-export default connect(mapStateToProps, {...authThunkCreators})(Login)
+export default connect(mapStateToProps, {...authThunkCreators, ...appActionCreators})(Login)
