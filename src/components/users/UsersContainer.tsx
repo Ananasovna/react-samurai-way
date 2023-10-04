@@ -1,7 +1,7 @@
 import {connect} from "react-redux";
 import {Users} from "./Users";
 import {UserType} from "../../redux/types";
-import {usersActionCreators, usersThunkCreators} from "../../redux/ducks/users";
+import {usersActionCreators, usersSelectors, usersThunkCreators} from "../../redux/ducks/users";
 import {StateType} from "../../redux/store";
 import {Component, ComponentType} from "react";
 import {Preloader} from "../common/Preloader";
@@ -62,12 +62,12 @@ export class UsersContainer extends Component<UsersPropsType> {
 
 const mapStateToProps = (state: StateType) => {
     return {
-        users: state.users.users,
-        pageSize: state.users.pageSize,
-        totalUsersCount: state.users.totalUsersCount,
-        currentPage: state.users.currentPage,
-        isFetching: state.users.isFetching,
-        followingInProgress: state.users.followingInProgress
+        users: usersSelectors.selectUsers(state),
+        pageSize: usersSelectors.selectPageSize(state),
+        totalUsersCount: usersSelectors.selectTotalUsersCount(state),
+        currentPage: usersSelectors.selectCurrentPage(state),
+        isFetching: usersSelectors.selectIsFetching(state),
+        followingInProgress: usersSelectors.selectFollowingInProgress(state),
     }
 }
 

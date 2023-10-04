@@ -1,12 +1,13 @@
 import {Component, ComponentType} from "react";
 import {Profile} from "./Profile";
 import {connect} from "react-redux";
-import {profileActionCreators, profileThunkCreators} from "../../redux/ducks/profile";
+import {profileActionCreators, profileSelectors, profileThunkCreators} from "../../redux/ducks/profile";
 import {StateType} from "../../redux/store";
 import {withRouter} from "../../hoc/withRouter";
 import {ProfileType} from "../../api/socilaMediaApi";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import {compose} from "redux";
+import {authSelectors} from "../../redux/ducks/auth";
 
 
 type ProfileContainerPropsType = {
@@ -56,7 +57,7 @@ class ProfileContainer extends Component<ProfileContainerPropsType> {
 }
 
 type MapStateToPropsType = {
-    profile: ProfileType
+    profile: ProfileType | {}
     isAuth: boolean | null
     status: string | null
     authUserId: number | null
@@ -64,10 +65,10 @@ type MapStateToPropsType = {
 
 const mapStateToProps = (state: StateType): MapStateToPropsType => {
     return {
-        profile: state.profilePage.profile as ProfileType,
-        isAuth: state.auth.isAuth,
-        status: state.profilePage.status,
-        authUserId: state.auth.id,
+        profile: profileSelectors.selectProfile(state),
+        isAuth: authSelectors.selectIsAuth(state),
+        status: profileSelectors.selectStatus(state),
+        authUserId: authSelectors.selectAuthId(state),
     }
 }
 

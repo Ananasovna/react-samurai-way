@@ -1,10 +1,10 @@
 
 import {connect} from "react-redux";
-import {authThunkCreators} from "../../redux/ducks/auth";
+import {authSelectors, authThunkCreators} from "../../redux/ducks/auth";
 import {Navigate} from "react-router-dom";
 import {StateType} from "../../redux/store";
 import {LoginForm, LoginFormDataType} from "./LoginForm";
-import {appActionCreators} from "../../redux/ducks/app";
+import {appActionCreators, appSelectors} from "../../redux/ducks/app";
 
 type LoginPropsType = {
     loginUser: (email: string, password: string, rememberMe?: boolean | undefined) => void
@@ -29,8 +29,8 @@ const Login = ({loginUser, isAuth, appError, setError}: LoginPropsType) => {
 
 const mapStateToProps = (state:StateType) => {
    return {
-       isAuth: state.auth.isAuth,
-       appError: state.app.error,
+       isAuth: authSelectors.selectIsAuth(state),
+       appError: appSelectors.selectError(state),
    }
 }
 

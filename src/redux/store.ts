@@ -1,7 +1,6 @@
-import {AnyAction, applyMiddleware, combineReducers, compose, legacy_createStore} from "redux";
+import {AnyAction, applyMiddleware, combineReducers, legacy_createStore} from "redux";
 import dialogsReducer from "./ducks/dialogs";
 import profileReducer from "./ducks/profile";
-import sidebarReducer from "./ducks/sidebar";
 import usersReducer from "./ducks/users";
 import authReducer from "./ducks/auth";
 import {composeWithDevTools} from "@redux-devtools/extension";
@@ -11,7 +10,6 @@ import appReducer from "./ducks/app";
 const rootReducer = combineReducers({
     dialogsPage: dialogsReducer,
     profilePage: profileReducer,
-    sidebar: sidebarReducer,
     users: usersReducer,
     auth: authReducer,
     app: appReducer,

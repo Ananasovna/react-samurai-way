@@ -1,12 +1,12 @@
 import {DispatchType} from "../../../redux/types";
-import {profileActionCreators} from "../../../redux/ducks/profile";
+import {profileActionCreators, profileSelectors} from "../../../redux/ducks/profile";
 import {MyPosts} from "./MyPosts";
 import {connect} from "react-redux";
 import {StateType} from "../../../redux/store";
 
 const mapStateToProps = (state: StateType) => {
     return {
-        data: state.profilePage.posts,
+        data: profileSelectors.selectPosts(state),
     }
 }
 

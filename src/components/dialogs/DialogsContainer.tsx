@@ -1,16 +1,17 @@
 import {DispatchType} from "../../redux/types";
 import {connect} from "react-redux";
-import {dialogsActionCreators} from "../../redux/ducks/dialogs";
+import {dialogsActionCreators, dialogsSelectors} from "../../redux/ducks/dialogs";
 import {Dialogs} from "./Dialogs";
 import {StateType} from "../../redux/store";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import {compose} from "redux";
 import {ComponentType} from "react";
+import {authSelectors} from "../../redux/ducks/auth";
 
 const mapStateToProps = (state: StateType) => {
     return {
-        data: state.dialogsPage,
-        isAuth: state.auth.isAuth,
+        data: dialogsSelectors.selectDialogsPage(state),
+        isAuth: authSelectors.selectIsAuth(state),
     }
 }
 
